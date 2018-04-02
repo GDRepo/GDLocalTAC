@@ -194,6 +194,7 @@
     </elementParameter>
     <elementParameter field="TEXT" name="DESTINATION" value="" show="false"/>
     <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" value="100" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="Patient.csv"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFileInputDelimited_1">
       <column comment="" key="false" length="-1" name="Patient_Id" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_Integer" originalLength="-1" usefulColumn="true"/>
