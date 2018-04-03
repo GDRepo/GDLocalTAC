@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<talendfile:ContextType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" xmi:id="_db_q4DdgEeizJryA7WaEpA" confirmationNeeded="false" name="Default">
+  <contextParameter xmi:id="_db_q4TdgEeizJryA7WaEpA" comment="" name="column_list" prompt="column_list?" promptNeeded="false" type="id_String" value=""/>
+  <contextParameter xmi:id="_db_q4jdgEeizJryA7WaEpA" comment="" name="table_name" prompt="table_name?" promptNeeded="false" type="id_String" value=""/>
+  <contextParameter xmi:id="_db_q4zdgEeizJryA7WaEpA" comment="" name="pk_column" prompt="pk_column?" promptNeeded="false" type="id_String" value=""/>
+  <contextParameter xmi:id="_db_q5DdgEeizJryA7WaEpA" comment="" name="upperBound" prompt="upperBound?" promptNeeded="false" type="id_String" value=""/>
+  <contextParameter xmi:id="_db_q5TdgEeizJryA7WaEpA" comment="" name="lowerBound" prompt="lowerBound?" promptNeeded="false" type="id_String" value=""/>
+  <contextParameter xmi:id="_db_q5jdgEeizJryA7WaEpA" comment="" name="numPartitions" prompt="numPartitions?" promptNeeded="true" type="id_String" value="20"/>
+  <contextParameter xmi:id="_db_q5zdgEeizJryA7WaEpA" comment="" name="HADOOP_HOST" prompt="HADOOP_HOST?" promptNeeded="true" type="id_String" value=""/>
+  <contextParameter xmi:id="_db_q6DdgEeizJryA7WaEpA" comment="" name="HADOOP_USER" prompt="HADOOP_USER?" promptNeeded="true" type="id_String" value="hadoop"/>
+  <contextParameter xmi:id="_db_q6TdgEeizJryA7WaEpA" comment="" name="TARGET_HDFS_DIRECTORY_FOR_DATA" prompt="TARGET_HDFS_DIRECTORY_FOR_DATA?" promptNeeded="true" type="id_String" value="/user/hadoop/data_ingestion/data/"/>
+  <contextParameter xmi:id="_db_q6jdgEeizJryA7WaEpA" comment="" name="DB_TO_MIGRATE_HOST" prompt="DB_TO_MIGRATE_HOST?" promptNeeded="true" type="id_String" value=""/>
+  <contextParameter xmi:id="_db_q6zdgEeizJryA7WaEpA" comment="" name="DB_TO_MIGRATE_PORT" prompt="DB_TO_MIGRATE_PORT?" promptNeeded="true" type="id_String" value="3306"/>
+  <contextParameter xmi:id="_db_q7DdgEeizJryA7WaEpA" comment="" name="DB_TO_MIGRATE_USER" prompt="DB_TO_MIGRATE_USER?" promptNeeded="true" type="id_String" value=""/>
+  <contextParameter xmi:id="_db_q7TdgEeizJryA7WaEpA" comment="" name="DB_TO_MIGRATE_PWD" prompt="DB_TO_MIGRATE_PWD?" promptNeeded="true" type="id_String" value=""/>
+  <contextParameter xmi:id="_db_q7jdgEeizJryA7WaEpA" comment="" name="DB_TO_MIGRATE_NAME" prompt="DB_TO_MIGRATE_NAME?" promptNeeded="true" type="id_String" value=""/>
+  <contextParameter xmi:id="_db_q7zdgEeizJryA7WaEpA" comment="" name="DB_FOR_AUDIT_HOST" prompt="DB_FOR_AUDIT_HOST?" promptNeeded="true" type="id_String" value=""/>
+  <contextParameter xmi:id="_db_q8DdgEeizJryA7WaEpA" comment="" name="DB_FOR_AUDIT_PORT" prompt="DB_FOR_AUDIT_PORT?" promptNeeded="true" type="id_String" value="3306"/>
+  <contextParameter xmi:id="_db_q8TdgEeizJryA7WaEpA" comment="" name="DB_FOR_AUDIT_USER" prompt="DB_FOR_AUDIT_USER?" promptNeeded="true" type="id_String" value=""/>
+  <contextParameter xmi:id="_db_q8jdgEeizJryA7WaEpA" comment="" name="DB_FOR_AUDIT_PWD" prompt="DB_FOR_AUDIT_PWD?" promptNeeded="true" type="id_String" value=""/>
+  <contextParameter xmi:id="_db_q8zdgEeizJryA7WaEpA" comment="" name="DB_FOR_AUDIT_NAME" prompt="DB_FOR_AUDIT_NAME?" promptNeeded="true" type="id_String" value="generic_ingestion"/>
+  <contextParameter xmi:id="_db_q9DdgEeizJryA7WaEpA" comment="" name="HDFS_FIELDS_SEPARATOR" prompt="HDFS_FIELDS_SEPARATOR?" promptNeeded="true" type="id_String" value=","/>
+  <contextParameter xmi:id="_db_q9TdgEeizJryA7WaEpA" comment="" name="DB_TO_MIGRATE_DRIVER_CLASS" prompt="DB_TO_MIGRATE_DRIVER_CLASS?" promptNeeded="true" type="id_String" value="com.mysql.jdbc.Driver"/>
+  <contextParameter xmi:id="_db_q9jdgEeizJryA7WaEpA" comment="" name="DB_TO_MIGRATE_DBTYPE" prompt="DB_TO_MIGRATE_DBTYPE?" promptNeeded="true" type="id_String" value="mysql"/>
+</talendfile:ContextType>

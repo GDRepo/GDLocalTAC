@@ -1,0 +1,1985 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<talendfile:ProcessType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TalendMapper="http://www.talend.org/mapper" xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" defaultContext="Default" jobType="Standard">
+  <context confirmationNeeded="false" name="Default">
+    <contextParameter comment="" name="column_list" prompt="column_list?" promptNeeded="false" repositoryContextId="_GoTOQMlPEeeJeob3yjK3aw" type="id_String" value=""/>
+    <contextParameter comment="" name="DB_FOR_AUDIT_HOST" prompt="DB_FOR_AUDIT_HOST?" promptNeeded="true" repositoryContextId="_GoTOQMlPEeeJeob3yjK3aw" type="id_String" value=""/>
+    <contextParameter comment="" name="DB_FOR_AUDIT_NAME" prompt="DB_FOR_AUDIT_NAME?" promptNeeded="true" repositoryContextId="_GoTOQMlPEeeJeob3yjK3aw" type="id_String" value="generic_ingestion"/>
+    <contextParameter comment="" name="DB_FOR_AUDIT_PORT" prompt="DB_FOR_AUDIT_PORT?" promptNeeded="true" repositoryContextId="_GoTOQMlPEeeJeob3yjK3aw" type="id_String" value="3306"/>
+    <contextParameter comment="" name="DB_FOR_AUDIT_PWD" prompt="DB_FOR_AUDIT_PWD?" promptNeeded="true" repositoryContextId="_GoTOQMlPEeeJeob3yjK3aw" type="id_String" value=""/>
+    <contextParameter comment="" name="DB_FOR_AUDIT_USER" prompt="DB_FOR_AUDIT_USER?" promptNeeded="true" repositoryContextId="_GoTOQMlPEeeJeob3yjK3aw" type="id_String" value=""/>
+    <contextParameter comment="" name="DB_TO_MIGRATE_DBTYPE" prompt="DB_TO_MIGRATE_DBTYPE?" promptNeeded="true" repositoryContextId="_GoTOQMlPEeeJeob3yjK3aw" type="id_String" value="mysql"/>
+    <contextParameter comment="" name="DB_TO_MIGRATE_DRIVER_CLASS" prompt="DB_TO_MIGRATE_DRIVER_CLASS?" promptNeeded="true" repositoryContextId="_GoTOQMlPEeeJeob3yjK3aw" type="id_String" value="com.mysql.jdbc.Driver"/>
+    <contextParameter comment="" name="DB_TO_MIGRATE_HOST" prompt="DB_TO_MIGRATE_HOST?" promptNeeded="true" repositoryContextId="_GoTOQMlPEeeJeob3yjK3aw" type="id_String" value=""/>
+    <contextParameter comment="" name="DB_TO_MIGRATE_NAME" prompt="DB_TO_MIGRATE_NAME?" promptNeeded="true" repositoryContextId="_GoTOQMlPEeeJeob3yjK3aw" type="id_String" value=""/>
+    <contextParameter comment="" name="DB_TO_MIGRATE_PORT" prompt="DB_TO_MIGRATE_PORT?" promptNeeded="true" repositoryContextId="_GoTOQMlPEeeJeob3yjK3aw" type="id_String" value="3306"/>
+    <contextParameter comment="" name="DB_TO_MIGRATE_PWD" prompt="DB_TO_MIGRATE_PWD?" promptNeeded="true" repositoryContextId="_GoTOQMlPEeeJeob3yjK3aw" type="id_String" value=""/>
+    <contextParameter comment="" name="DB_TO_MIGRATE_USER" prompt="DB_TO_MIGRATE_USER?" promptNeeded="true" repositoryContextId="_GoTOQMlPEeeJeob3yjK3aw" type="id_String" value=""/>
+    <contextParameter comment="" name="HADOOP_HOST" prompt="HADOOP_HOST?" promptNeeded="true" repositoryContextId="_GoTOQMlPEeeJeob3yjK3aw" type="id_String" value=""/>
+    <contextParameter comment="" name="HADOOP_USER" prompt="HADOOP_USER?" promptNeeded="true" repositoryContextId="_GoTOQMlPEeeJeob3yjK3aw" type="id_String" value="hadoop"/>
+    <contextParameter comment="" name="HDFS_FIELDS_SEPARATOR" prompt="HDFS_FIELDS_SEPARATOR?" promptNeeded="true" repositoryContextId="_GoTOQMlPEeeJeob3yjK3aw" type="id_String" value=","/>
+    <contextParameter comment="" name="lowerBound" prompt="lowerBound?" promptNeeded="false" repositoryContextId="_GoTOQMlPEeeJeob3yjK3aw" type="id_String" value=""/>
+    <contextParameter comment="" name="numPartitions" prompt="numPartitions?" promptNeeded="true" repositoryContextId="_GoTOQMlPEeeJeob3yjK3aw" type="id_String" value="20"/>
+    <contextParameter comment="" name="pk_column" prompt="pk_column?" promptNeeded="false" repositoryContextId="_GoTOQMlPEeeJeob3yjK3aw" type="id_String" value=""/>
+    <contextParameter comment="" name="table_name" prompt="table_name?" promptNeeded="false" repositoryContextId="_GoTOQMlPEeeJeob3yjK3aw" type="id_String" value=""/>
+    <contextParameter comment="" name="TARGET_HDFS_DIRECTORY_FOR_DATA" prompt="TARGET_HDFS_DIRECTORY_FOR_DATA?" promptNeeded="true" repositoryContextId="_GoTOQMlPEeeJeob3yjK3aw" type="id_String" value="/user/hadoop/data_ingestion/data/"/>
+    <contextParameter comment="" name="upperBound" prompt="upperBound?" promptNeeded="false" repositoryContextId="_GoTOQMlPEeeJeob3yjK3aw" type="id_String" value=""/>
+    <contextParameter comment="" name="Ingestion_Style" prompt="Ingestion_Style?" promptNeeded="true" type="id_List Of Value" value="SPARK,SQOOP,STANDARD_DI"/>
+  </context>
+  <parameters>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_X" value="64" show="false"/>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" value="288" show="false"/>
+    <elementParameter field="TEXT" name="REPOSITORY_CONNECTION_ID" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_PROPERTY_TYPENAME" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_HADOOP_DISTRIBUTION" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_HADOOP_VERSION" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_ENABLE_KERBEROS" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_NAME_NODE_PRINCIPAL" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_USERNAME" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_GROUP" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_USE_KEYTAB" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_KT_PRINCIPAL" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_KEY_TAB" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_ENABLE_OO_KERBEROS" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_NAME_NODE_END_POINT" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_JOB_TRACKER_ENDPOINT" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_END_POINT" value="" show="false"/>
+    <elementParameter field="CHECK" name="IMPLICITCONTEXT_USE_PROJECT_SETTINGS" value="true" show="false"/>
+    <elementParameter field="CHECK" name="STATANDLOG_USE_PROJECT_SETTINGS" value="true" show="false"/>
+    <elementParameter field="CHECK" name="MULTI_THREAD_EXECATION" value="false"/>
+    <elementParameter field="TEXT" name="PARALLELIZE_UNIT_SIZE" value="25000"/>
+    <elementParameter field="CHECK" name="IMPLICIT_TCONTEXTLOAD" value="false"/>
+    <elementParameter field="RADIO" name="FROM_FILE_FLAG_IMPLICIT_CONTEXT" value="true" show="false"/>
+    <elementParameter field="RADIO" name="FROM_DATABASE_FLAG_IMPLICIT_CONTEXT" value="false" show="false"/>
+    <elementParameter field="FILE" name="IMPLICIT_TCONTEXTLOAD_FILE" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY_TYPE_IMPLICIT_CONTEXT:PROPERTY_TYPE" value="" show="false"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY_TYPE_IMPLICIT_CONTEXT:REPOSITORY_PROPERTY_TYPE" value="_LDACkCvzEea35cjwdVGtew" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="DB_TYPE_IMPLICIT_CONTEXT" value="tMysqlInput" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION_IMPLICIT_CONTEXT" value="MYSQL_5" show="false"/>
+    <elementParameter field="TEXT" name="URL_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TABLE" name="DRIVER_JAR_IMPLICIT_CONTEXT" show="false"/>
+    <elementParameter field="TEXT" name="DRIVER_CLASS_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="HOST_IMPLICIT_CONTEXT" value="&quot;ec2-54-149-123-212.us-west-2.compute.amazonaws.com&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PORT_IMPLICIT_CONTEXT" value="&quot;3306&quot;" show="false"/>
+    <elementParameter field="TEXT" name="DBNAME_IMPLICIT_CONTEXT" value="&quot;demo&quot;" show="false"/>
+    <elementParameter field="TEXT" name="LOCAL_SERVICE_NAME_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PROPERTIES_IMPLICIT_CONTEXT" value="&quot;noDatetimeStringSync=true&quot;" show="false"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB_IMPLICIT_CONTEXT" value="" show="false"/>
+    <elementParameter field="TEXT" name="USER_IMPLICIT_CONTEXT" value="&quot;root&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS_IMPLICIT_CONTEXT" value="7s6v49ZcklfgvLhdBCEhjQ==" show="false"/>
+    <elementParameter field="FILE" name="DBFILE_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="DBTABLE" name="DBTABLE_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="QUERY_CONDITION_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="LOAD_NEW_VARIABLE" value="Warning" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="NOT_LOAD_OLD_VARIABLE" value="Warning" show="false"/>
+    <elementParameter field="CHECK" name="PRINT_OPERATIONS" value="false" show="false"/>
+    <elementParameter field="CHECK" name="DISABLE_ERROR" value="false" show="false"/>
+    <elementParameter field="CHECK" name="DISABLE_WARNINGS" value="false" show="false"/>
+    <elementParameter field="CHECK" name="DISABLE_INFO" value="false" show="false"/>
+    <elementParameter field="CHECK" name="ON_STATCATCHER_FLAG" value="false"/>
+    <elementParameter field="CHECK" name="ON_LOGCATCHER_FLAG" value="false"/>
+    <elementParameter field="CHECK" name="ON_METERCATCHER_FLAG" value="false"/>
+    <elementParameter field="CHECK" name="ON_CONSOLE_FLAG" value="false" show="false"/>
+    <elementParameter field="CHECK" name="ON_FILES_FLAG" value="false" show="false"/>
+    <elementParameter field="DIRECTORY" name="FILE_PATH" value="&quot;C:/jons/Talend/workspace/.metadata&quot;" show="false"/>
+    <elementParameter field="TEXT" name="FILENAME_STATS" value="&quot;stats_file.txt&quot;" show="false"/>
+    <elementParameter field="TEXT" name="FILENAME_LOGS" value="&quot;logs_file.txt&quot;" show="false"/>
+    <elementParameter field="TEXT" name="FILENAME_METTER" value="&quot;meter_file.txt&quot;" show="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="ISO-8859-15" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15" show="false"/>
+    <elementParameter field="CHECK" name="ON_DATABASE_FLAG" value="false" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="DB_TYPE" value="tJDBCOutput" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="ORACLE_11" show="false"/>
+    <elementParameter field="TEXT" name="URL" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TABLE" name="DRIVER_JAR" show="false"/>
+    <elementParameter field="TEXT" name="DRIVER_CLASS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="HOST" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PORT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="DBNAME" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="LOCAL_SERVICE_NAME" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PROPERTIES" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="USER" value="&quot;&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="0RMsyjmybrE=" show="false"/>
+    <elementParameter field="FILE" name="DBFILE" value="&quot;&quot;" show="false"/>
+    <elementParameter field="DBTABLE" name="TABLE_STATS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="DBTABLE" name="TABLE_LOGS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="DBTABLE" name="TABLE_METER" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="CATCH_RUNTIME_ERRORS" value="true" show="false"/>
+    <elementParameter field="CHECK" name="CATCH_USER_ERRORS" value="true" show="false"/>
+    <elementParameter field="CHECK" name="CATCH_USER_WARNING" value="true" show="false"/>
+    <elementParameter field="CHECK" name="CATCH_REALTIME_STATS" value="false" show="false"/>
+    <elementParameter field="TEXT" name="HEADERFOOTER_HEADERID" value="" show="false"/>
+    <elementParameter field="CHECK" name="HEADER_ENABLED" value="false" show="false"/>
+    <elementParameter field="TEXT" name="HEADER_LIBRARY" value="" show="false"/>
+    <elementParameter field="TEXT" name="HEADER_CODE" value="" show="false"/>
+    <elementParameter field="TEXT" name="HEADER_IMPORT" value="" show="false"/>
+    <elementParameter field="TEXT" name="HEADERFOOTER_FOOTERID" value="" show="false"/>
+    <elementParameter field="CHECK" name="FOOTER_ENABLED" value="false" show="false"/>
+    <elementParameter field="TEXT" name="FOOTER_LIBRARY" value="" show="false"/>
+    <elementParameter field="TEXT" name="FOOTER_CODE" value="" show="false"/>
+    <elementParameter field="TEXT" name="FOOTER_IMPORT" value="" show="false"/>
+    <routinesParameter id="_azGQmRyEEeayw4-67psbnw" name="DQTechnical"/>
+    <routinesParameter id="_axAl4hyEEeayw4-67psbnw" name="DataMasking"/>
+    <routinesParameter id="_azQBkByEEeayw4-67psbnw" name="DataOperation"/>
+    <routinesParameter id="_ay8flByEEeayw4-67psbnw" name="DataQualityDependencies"/>
+    <routinesParameter id="_ay8fkByEEeayw4-67psbnw" name="DataQuality"/>
+    <routinesParameter id="_azGQlRyEEeayw4-67psbnw" name="DqStringHandling"/>
+    <routinesParameter id="_azQBlByEEeayw4-67psbnw" name="Mathematical"/>
+    <routinesParameter id="_azQBmByEEeayw4-67psbnw" name="Numeric"/>
+    <routinesParameter id="_azZLgByEEeayw4-67psbnw" name="Relational"/>
+    <routinesParameter id="_azi8hByEEeayw4-67psbnw" name="SQLike"/>
+    <routinesParameter id="_azZLhByEEeayw4-67psbnw" name="StringHandling"/>
+    <routinesParameter id="_azZLiByEEeayw4-67psbnw" name="TalendDataGenerator"/>
+    <routinesParameter id="_azZLjByEEeayw4-67psbnw" name="TalendDate"/>
+    <routinesParameter id="_azi8gByEEeayw4-67psbnw" name="TalendString"/>
+    <routinesParameter id="_Gm30gD-GEeaWYNpy6R6OLQ" name="MDM"/>
+    <routinesParameter id="_N4lBEPYJEeemCvD7oleKqA" name="TalendStringUtil"/>
+  </parameters>
+  <node componentName="tJDBCConnection" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="128" posY="352">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJDBCConnection_1" show="false"/>
+    <elementParameter field="TEXT" name="URL" value="&quot;jdbc:&quot;+context.DB_TO_MIGRATE_DBTYPE+&quot;://&quot;+context.DB_TO_MIGRATE_HOST+&quot;:&quot;+context.DB_TO_MIGRATE_PORT+&quot;/&quot;+context.DB_TO_MIGRATE_NAME+&quot;?user=&quot;+context.DB_TO_MIGRATE_USER+&quot;&amp;password=&quot;+context.DB_TO_MIGRATE_PWD+&quot;&amp;zeroDateTimeBehavior=convertToNull&quot;"/>
+    <elementParameter field="TABLE" name="DRIVER_JAR">
+      <elementValue elementRef="JAR_NAME" value="mysql-connector-java-5.1.30-bin.jar"/>
+      <elementValue elementRef="JAR_NAME" value="postgresql-9.4-1201.jdbc41.jar"/>
+      <elementValue elementRef="JAR_NAME" value="ojdbc7.jar"/>
+    </elementParameter>
+    <elementParameter field="TEXT" name="DRIVER_CLASS" value="context.DB_TO_MIGRATE_DRIVER_CLASS"/>
+    <elementParameter field="TEXT" name="USER" value="context.DB_TO_MIGRATE_USER"/>
+    <elementParameter field="PASSWORD" name="PASS" value="8pW6Nmy2kudqcCLq2qlGU4BmBcDfWDkO3DH4Hlwasb4="/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="CHECK" name="USE_SHARED_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="SHARED_CONNECTION_NAME" value="" show="false"/>
+    <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="IS_USE_AUTO_COMMIT" value="true"/>
+    <elementParameter field="CHECK" name="AUTO_COMMIT" value="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="Db_to_Migrate"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <node componentName="tJDBCTableList" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="512" posY="0">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJDBCTableList_1" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="DBTYPE" value="MYSQL"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_AS400" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_DB2" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_FIREBIRD" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_GREENPLUM" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_INGRES" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_INTERBASE" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_MSSQL" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_MYSQL" value="tJDBCConnection_1"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_DBORACLE" value="tJDBCConnection_1" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_PARACCEL" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_POSTGREPLUS" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_POSTGRE" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_SQLITE" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_SYBASE" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_TERADATA" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_VERTICA" value="" show="false"/>
+    <elementParameter field="CHECK" name="USEFILTER" value="false"/>
+    <elementParameter field="TEXT" name="NAME_REGEX" value="&quot;(.)*\\$(.)*&quot;" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="CRITERIA" value="EXCLUDE" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="getTableList"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <node componentName="tJDBCColumnList" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="640" posY="96">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJDBCColumnList_1" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="DBTYPE" value="MYSQL"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_AS400" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_DB2" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_FIREBIRD" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_GREENPLUM" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_INGRES" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_INTERBASE" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_MSSQL" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_MYSQL" value="tJDBCConnection_1"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_DBORACLE" value="tJDBCConnection_1" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_PARACCEL" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_POSTGREPLUS" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_POSTGRE" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_SQLITE" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_SYBASE" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_TERADATA" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION_VERTICA" value="" show="false"/>
+    <elementParameter field="TEXT" name="TABLE_NAME" value="((String)globalMap.get(&quot;tJDBCTableList_1_CURRENT_TABLE&quot;))"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true"/>
+    <elementParameter field="TEXT" name="LABEL" value="getColumnDetails_perTable"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <node componentName="tIterateToFlow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="768" posY="0">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tIterateToFlow_1" show="false"/>
+    <elementParameter field="TABLE" name="MAPPING">
+      <elementValue elementRef="SCHEMA_COLUMN" value="TableName"/>
+      <elementValue elementRef="VALUE" value="((String)globalMap.get(&quot;tJDBCTableList_1_CURRENT_TABLE&quot;))"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="ColumnName"/>
+      <elementValue elementRef="VALUE" value="((String)globalMap.get(&quot;tJDBCColumnList_1_CURRENT_COLUMN&quot;))"/>
+    </elementParameter>
+    <elementParameter field="TEXT" name="LABEL" value="pushColumnDetails"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tIterateToFlow_1">
+      <column comment="" key="false" length="-1" name="TableName" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="ColumnName" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tAggregateRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1024" posY="0">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tAggregateRow_1" show="false"/>
+    <elementParameter field="TABLE" name="GROUPBYS">
+      <elementValue elementRef="OUTPUT_COLUMN" value="TableName"/>
+      <elementValue elementRef="INPUT_COLUMN" value="TableName"/>
+    </elementParameter>
+    <elementParameter field="TABLE" name="OPERATIONS">
+      <elementValue elementRef="OUTPUT_COLUMN" value="Column_List"/>
+      <elementValue elementRef="FUNCTION" value="list"/>
+      <elementValue elementRef="INPUT_COLUMN" value="ColumnName"/>
+      <elementValue elementRef="IGNORE_NULL" value="true"/>
+    </elementParameter>
+    <elementParameter field="TEXT" name="LIST_DELIMITER" value="&quot;,&quot;"/>
+    <elementParameter field="CHECK" name="USE_FINANCIAL_PRECISION" value="true"/>
+    <elementParameter field="CHECK" name="CHECK_TYPE_OVERFLOW" value="false"/>
+    <elementParameter field="CHECK" name="CHECK_ULP" value="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tAggregateRow_1">
+      <column comment="" key="false" length="-1" name="TableName" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Column_List" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tFlowToIterate" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1280" posY="0">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFlowToIterate_1" show="false"/>
+    <elementParameter field="CHECK" name="DEFAULT_MAP" value="true"/>
+    <elementParameter field="TABLE" name="MAP" show="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tFlowToIterate_1"/>
+  </node>
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1024" posY="128">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJava_2" show="false"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="java.sql.DatabaseMetaData dm = ((java.sql.Connection)globalMap.get(&quot;conn_tJDBCConnection_1&quot;)).getMetaData();&#xA;java.sql.ResultSet rs = dm.getPrimaryKeys(context.DB_TO_MIGRATE_NAME, context.DB_TO_MIGRATE_NAME, ((String)globalMap.get(&quot;tableInfoList.TableName&quot;)));&#xA;while(rs.next()) &#xA;{    &#xA;//  String pkey = rs.getString(&quot;PKCOLUMN_NAME&quot;);&#xA;  String pkey = rs.getString(&quot;COLUMN_NAME&quot;);&#xA;  if(pkey == null || pkey.equals(&quot;&quot;)){&#xA;  context.Ingestion_Style = &quot;STANDARD_DI&quot;;&#xA;  }&#xA;  context.pk_column = pkey;&#xA;  System.out.println(&quot;primary key for table &quot;+((String)globalMap.get(&quot;tableInfoList.TableName&quot;))+&quot; : &quot;+ pkey);&#xA;}"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="LABEL" value="Find if PK exists"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJava_2"/>
+  </node>
+  <node componentName="tHDFSList" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="192" posY="896">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tHDFSList_1" show="false"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tHDFSConnection_1"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="EMR_4_6_0" show="false"/>
+    <elementParameter field="HADOOP_DISTRIBUTION" name="HDFS" value="" show="false"/>
+    <elementParameter field="HADOOP_JARS_DIALOG" name="HADOOP_CUSTOM_JARS" value="" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="AUTHENTICATION_MODE" value="USERNAME" show="false"/>
+    <elementParameter field="TEXT" name="FS_DEFAULT_NAME" value="&quot;hdfs://ec2-54-201-105-38.us-west-2.compute.amazonaws.com:8020&quot;" show="false"/>
+    <elementParameter field="CHECK" name="USE_DATANODE_HOSTNAME" value="true" show="false"/>
+    <elementParameter field="CHECK" name="USE_KRB" value="false" show="false"/>
+    <elementParameter field="TEXT" name="NAMENODE_PRINCIPAL" value="&quot;nn/_HOST@EXAMPLE.COM&quot;" show="false"/>
+    <elementParameter field="CHECK" name="USE_KEYTAB" value="false" show="false"/>
+    <elementParameter field="TEXT" name="PRINCIPAL" value="&quot;hdfs&quot;" show="false"/>
+    <elementParameter field="FILE" name="KEYTAB_PATH" value="&quot;/tmp/hdfs.headless.keytab&quot;" show="false"/>
+    <elementParameter field="CHECK" name="USE_MAPRTICKET" value="false" show="false"/>
+    <elementParameter field="TEXT" name="USERNAME" value="&quot;hadoop&quot;" show="false"/>
+    <elementParameter field="TEXT" name="GROUP" value="&quot;supergroup&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="MAPRTICKET_PASSWORD" value="0RMsyjmybrE=" show="false"/>
+    <elementParameter field="TEXT" name="MAPRTICKET_CLUSTER" value="&quot;demo.mapr.com&quot;" show="false"/>
+    <elementParameter field="TEXT" name="MAPRTICKET_DURATION" value="86400L" show="false"/>
+    <elementParameter field="DIRECTORY_HADOOP" name="DIRECTORY" value="context.Ingestion_Style.equals(&quot;STANDARD_DI&quot;)? context.TARGET_HDFS_DIRECTORY_FOR_DATA : context.TARGET_HDFS_DIRECTORY_FOR_DATA+((String)globalMap.get(&quot;tableInfoList.TableName&quot;))"/>
+    <elementParameter field="CLOSED_LIST" name="LIST_MODE" value="FILES"/>
+    <elementParameter field="CHECK" name="INCLUDSUBDIR" value="false"/>
+    <elementParameter field="CLOSED_LIST" name="CASE_SENSITIVE" value="YES"/>
+    <elementParameter field="CHECK" name="GLOBEXPRESSIONS" value="true"/>
+    <elementParameter field="TABLE" name="FILES">
+      <elementValue elementRef="FILEMASK" value="context.Ingestion_Style.equals(&quot;STANDARD_DI&quot;)? ((String)globalMap.get(&quot;tableInfoList.TableName&quot;)) : &quot;part-*&quot;"/>
+    </elementParameter>
+    <elementParameter field="RADIO" name="ORDER_BY_NOTHING" value="true"/>
+    <elementParameter field="RADIO" name="ORDER_BY_FILENAME" value="false"/>
+    <elementParameter field="RADIO" name="ORDER_BY_FILESIZE" value="false"/>
+    <elementParameter field="RADIO" name="ORDER_BY_MODIFIEDDATE" value="false"/>
+    <elementParameter field="RADIO" name="ORDER_ACTION_ASC" value="true"/>
+    <elementParameter field="RADIO" name="ORDER_ACTION_DESC" value="false"/>
+    <elementParameter field="CHECK" name="IFEXCLUDE" value="false"/>
+    <elementParameter field="TEXT" name="EXCLUDEFILEMASK" value="&quot;*.txt&quot;" show="false"/>
+    <elementParameter field="TABLE" name="HADOOP_ADVANCED_PROPERTIES" show="false"/>
+    <elementParameter field="CHECK" name="SET_MAPR_HOME_DIR" value="false" show="false"/>
+    <elementParameter field="TEXT" name="MAPR_HOME_DIR" value="&quot;/opt/mapr&quot;" show="false"/>
+    <elementParameter field="CHECK" name="SET_HADOOP_LOGIN" value="false" show="false"/>
+    <elementParameter field="TEXT" name="HADOOP_LOGIN" value="&quot;kerberos&quot;" show="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <node componentName="tHDFSRowCount" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="352" posY="896">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tHDFSRowCount_1" show="false"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tHDFSConnection_1"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="EMR_4_6_0" show="false"/>
+    <elementParameter field="HADOOP_DISTRIBUTION" name="HDFS" value="" show="false"/>
+    <elementParameter field="HADOOP_JARS_DIALOG" name="HADOOP_CUSTOM_JARS" value="" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="AUTHENTICATION_MODE" value="USERNAME" show="false"/>
+    <elementParameter field="TEXT" name="FS_DEFAULT_NAME" value="&quot;hdfs://ec2-54-201-105-38.us-west-2.compute.amazonaws.com:8020&quot;" show="false"/>
+    <elementParameter field="CHECK" name="USE_DATANODE_HOSTNAME" value="true" show="false"/>
+    <elementParameter field="CHECK" name="USE_KRB" value="false" show="false"/>
+    <elementParameter field="TEXT" name="NAMENODE_PRINCIPAL" value="&quot;nn/_HOST@EXAMPLE.COM&quot;" show="false"/>
+    <elementParameter field="CHECK" name="USE_KEYTAB" value="false" show="false"/>
+    <elementParameter field="TEXT" name="PRINCIPAL" value="&quot;hdfs&quot;" show="false"/>
+    <elementParameter field="FILE" name="KEYTAB_PATH" value="&quot;/tmp/hdfs.headless.keytab&quot;" show="false"/>
+    <elementParameter field="CHECK" name="USE_MAPRTICKET" value="false" show="false"/>
+    <elementParameter field="TEXT" name="USERNAME" value="&quot;hadoop&quot;" show="false"/>
+    <elementParameter field="TEXT" name="GROUP" value="&quot;supergroup&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="MAPRTICKET_PASSWORD" value="0RMsyjmybrE=" show="false"/>
+    <elementParameter field="TEXT" name="MAPRTICKET_CLUSTER" value="&quot;demo.mapr.com&quot;" show="false"/>
+    <elementParameter field="TEXT" name="MAPRTICKET_DURATION" value="86400L" show="false"/>
+    <elementParameter field="FILE_HADOOP" name="FILENAME" value="((String)globalMap.get(&quot;tHDFSList_1_CURRENT_FILEPATH&quot;))"/>
+    <elementParameter field="TEXT" name="ROWSEPARATOR" value="&quot;\n&quot;"/>
+    <elementParameter field="CHECK" name="IGNORE_EMPTY_ROW" value="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;UTF-8&quot;"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="UTF-8"/>
+    <elementParameter field="CHECK" name="UNCOMPRESS" value="false"/>
+    <elementParameter field="CLOSED_LIST" name="COMPRESSION" value="GZIP" show="false"/>
+    <elementParameter field="TABLE" name="HADOOP_ADVANCED_PROPERTIES" show="false"/>
+    <elementParameter field="CHECK" name="SET_MAPR_HOME_DIR" value="false" show="false"/>
+    <elementParameter field="TEXT" name="MAPR_HOME_DIR" value="&quot;/opt/mapr&quot;" show="false"/>
+    <elementParameter field="CHECK" name="SET_HADOOP_LOGIN" value="false" show="false"/>
+    <elementParameter field="TEXT" name="HADOOP_LOGIN" value="&quot;kerberos&quot;" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="EMR_46_HDFS"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <node componentName="tIterateToFlow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="544" posY="896">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tIterateToFlow_2" show="false"/>
+    <elementParameter field="TABLE" name="MAPPING">
+      <elementValue elementRef="SCHEMA_COLUMN" value="FileName"/>
+      <elementValue elementRef="VALUE" value="((String)globalMap.get(&quot;tHDFSList_1_CURRENT_FILEDIRECTORY&quot;))"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="RowCount"/>
+      <elementValue elementRef="VALUE" value="((Integer)globalMap.get(&quot;tHDFSRowCount_1_COUNT&quot;))"/>
+    </elementParameter>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tIterateToFlow_2">
+      <column comment="" key="false" length="-1" name="FileName" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="RowCount" nullable="true" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tAggregateRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="704" posY="896">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tAggregateRow_2" show="false"/>
+    <elementParameter field="TABLE" name="GROUPBYS">
+      <elementValue elementRef="OUTPUT_COLUMN" value="FileName"/>
+      <elementValue elementRef="INPUT_COLUMN" value="FileName"/>
+    </elementParameter>
+    <elementParameter field="TABLE" name="OPERATIONS">
+      <elementValue elementRef="OUTPUT_COLUMN" value="RowCount"/>
+      <elementValue elementRef="FUNCTION" value="sum"/>
+      <elementValue elementRef="INPUT_COLUMN" value="RowCount"/>
+      <elementValue elementRef="IGNORE_NULL" value="false"/>
+    </elementParameter>
+    <elementParameter field="TEXT" name="LIST_DELIMITER" value="&quot;,&quot;"/>
+    <elementParameter field="CHECK" name="USE_FINANCIAL_PRECISION" value="true"/>
+    <elementParameter field="CHECK" name="CHECK_TYPE_OVERFLOW" value="false"/>
+    <elementParameter field="CHECK" name="CHECK_ULP" value="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tAggregateRow_2">
+      <column comment="" key="false" length="-1" name="FileName" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="RowCount" nullable="true" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="864" posY="896">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tMap_2" show="false"/>
+    <elementParameter field="EXTERNAL" name="MAP" value=""/>
+    <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
+    <elementParameter field="DIRECTORY" name="TEMPORARY_DATA_DIRECTORY" value=""/>
+    <elementParameter field="IMAGE" name="PREVIEW" value="_TpKucMlNEeeJeob3yjK3aw-tMap_2-PREVIEW.bmp"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true" show="false"/>
+    <elementParameter field="CHECK" name="LKUP_PARALLELIZE" value="false" show="false"/>
+    <elementParameter field="CHECK" name="ENABLE_AUTO_CONVERT_TYPE" value="false" show="false"/>
+    <elementParameter field="TEXT" name="ROWS_BUFFER_SIZE" value="2000000"/>
+    <elementParameter field="CHECK" name="CHANGE_HASH_AND_EQUALS_FOR_BIGDECIMAL" value="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="audit_load_status" name="updateLoadStatus">
+      <column comment="" key="false" length="255" name="source_type" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="source_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="target_success_rowcount" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="target_failed_rowcount" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="target_balance_number" nullable="true" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="load_status" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="65535" name="error_message" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="load_end_datetime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="insert_datetime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="insert_user" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <additionalProperties key="Comment" value=""/>
+    </metadata>
+    <nodeData xsi:type="TalendMapper:MapperData">
+      <uiProperties/>
+      <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
+      <outputTables sizeState="INTERMEDIATE" name="updateLoadStatus">
+        <mapperTableEntries name="source_type" expression="&quot;Table&quot;" type="id_String" nullable="true"/>
+        <mapperTableEntries name="source_name" expression="((String)globalMap.get(&quot;tableInfoList.TableName&quot;))" type="id_String" nullable="true"/>
+        <mapperTableEntries name="target_success_rowcount" expression="row7.RowCount " type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="target_failed_rowcount" expression="" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="target_balance_number" expression="" type="id_Long" nullable="true"/>
+        <mapperTableEntries name="load_status" expression="&quot;progress&quot;" type="id_String" nullable="true"/>
+        <mapperTableEntries name="error_message" expression="&quot;&quot;" type="id_String" nullable="true"/>
+        <mapperTableEntries name="load_end_datetime" expression="TalendDate.getCurrentDate()" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="insert_datetime" expression="TalendDate.getCurrentDate()" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="insert_user" expression="&quot;Talend&quot;" type="id_String" nullable="true"/>
+      </outputTables>
+      <inputTables sizeState="INTERMEDIATE" name="row7" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+        <mapperTableEntries name="FileName" type="id_String" nullable="true"/>
+        <mapperTableEntries name="RowCount" type="id_Integer" nullable="true"/>
+      </inputTables>
+    </nodeData>
+  </node>
+  <node componentName="tJDBCOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1056" posY="896">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJDBCOutput_4" show="false"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tJDBCConnection_2"/>
+    <elementParameter field="TEXT" name="URL" value="&quot;jdbc:mysql://&quot;+context.DB_FOR_AUDIT_HOST+&quot;:&quot;+context.DB_FOR_AUDIT_PORT+&quot;/&quot;+context.DB_FOR_AUDIT_NAME+&quot;?user=&quot;+context.DB_FOR_AUDIT_USER+&quot;&amp;password=&quot;+context.DB_FOR_AUDIT_PWD+&quot;&amp;zeroDateTimeBehavior=convertToNull&quot;" show="false"/>
+    <elementParameter field="TABLE" name="DRIVER_JAR" show="false">
+      <elementValue elementRef="JAR_NAME" value="mysql-connector-java-5.1.30-bin.jar"/>
+    </elementParameter>
+    <elementParameter field="TEXT" name="DRIVER_CLASS" value="context.DB_TO_MIGRATE_DRIVER_CLASS" show="false"/>
+    <elementParameter field="TEXT" name="USER" value="context.DB_FOR_AUDIT_USER" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="8pW6Nmy2kueeURE84uh2tyXLd0dB8cKxaYspkiFmp/Q=" show="false"/>
+    <elementParameter field="TEXT" name="TABLE" value="&quot;audit_load_status&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="UPDATE"/>
+    <elementParameter field="CHECK" name="CLEAR_TABLE" value="false"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime" show="false"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false" show="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="TEXT" name="COMMIT_EVERY" value="10000" show="false"/>
+    <elementParameter field="TABLE" name="ADD_COLS"/>
+    <elementParameter field="CHECK" name="USE_FIELD_OPTIONS" value="true"/>
+    <elementParameter field="TABLE" name="FIELD_OPTIONS">
+      <elementValue elementRef="SCHEMA_COLUMN" value="source_type"/>
+      <elementValue elementRef="UPDATE_KEY" value="true"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="false"/>
+      <elementValue elementRef="INSERTABLE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="source_name"/>
+      <elementValue elementRef="UPDATE_KEY" value="true"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="false"/>
+      <elementValue elementRef="INSERTABLE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="target_success_rowcount"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="target_failed_rowcount"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="target_balance_number"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="load_status"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="error_message"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="load_end_datetime"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="insert_datetime"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="insert_user"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="false"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="ENABLE_DEBUG_MODE" value="false"/>
+    <elementParameter field="CHECK" name="USE_BATCH_SIZE" value="true" show="false"/>
+    <elementParameter field="CHECK" name="USE_BATCH_AND_USE_CONN" value="false"/>
+    <elementParameter field="TEXT" name="BATCH_SIZE" value="10000" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="Tag Audit status"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="audit_load_status" name="tJDBCOutput_4">
+      <column comment="" key="false" length="255" name="source_type" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="source_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="target_success_rowcount" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="target_failed_rowcount" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="target_balance_number" nullable="true" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="load_status" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="65535" name="error_message" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="load_end_datetime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="insert_datetime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="insert_user" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <additionalProperties key="Comment" value=""/>
+    </metadata>
+    <metadata connector="REJECT" label="audit_load_status" name="REJECT">
+      <column comment="" key="false" length="255" name="source_type" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="source_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="target_success_rowcount" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="target_failed_rowcount" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="target_balance_number" nullable="true" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="load_status" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="65535" name="error_message" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="load_end_datetime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="insert_datetime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="insert_user" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <additionalProperties key="Comment" value=""/>
+    </metadata>
+  </node>
+  <node componentName="tHDFSConnection" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="0" posY="-192">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tHDFSConnection_1" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="EMR_4_6_0"/>
+    <elementParameter field="HADOOP_DISTRIBUTION" name="HDFS" value=""/>
+    <elementParameter field="HADOOP_JARS_DIALOG" name="HADOOP_CUSTOM_JARS" value="" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="AUTHENTICATION_MODE" value="USERNAME" show="false"/>
+    <elementParameter field="TEXT" name="FS_DEFAULT_NAME" value="&quot;hdfs://&quot;+context.HADOOP_HOST+&quot;:8020&quot;"/>
+    <elementParameter field="CHECK" name="CONFIGURATIONS_FROM_CLASSPATH" value="false"/>
+    <elementParameter field="CHECK" name="USE_KRB" value="false" show="false"/>
+    <elementParameter field="TEXT" name="NAMENODE_PRINCIPAL" value="&quot;nn/_HOST@EXAMPLE.COM&quot;" show="false"/>
+    <elementParameter field="CHECK" name="USE_KEYTAB" value="false" show="false"/>
+    <elementParameter field="TEXT" name="PRINCIPAL" value="&quot;hdfs&quot;" show="false"/>
+    <elementParameter field="FILE" name="KEYTAB_PATH" value="&quot;/tmp/hdfs.headless.keytab&quot;" show="false"/>
+    <elementParameter field="CHECK" name="USE_MAPRTICKET" value="false" show="false"/>
+    <elementParameter field="TEXT" name="USERNAME" value="context.HADOOP_USER"/>
+    <elementParameter field="TEXT" name="GROUP" value="&quot;supergroup&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="MAPRTICKET_PASSWORD" value="0RMsyjmybrE=" show="false"/>
+    <elementParameter field="TEXT" name="MAPRTICKET_CLUSTER" value="&quot;demo.mapr.com&quot;" show="false"/>
+    <elementParameter field="TEXT" name="MAPRTICKET_DURATION" value="86400L" show="false"/>
+    <elementParameter field="TABLE" name="HADOOP_ADVANCED_PROPERTIES"/>
+    <elementParameter field="CHECK" name="USE_DATANODE_HOSTNAME" value="true"/>
+    <elementParameter field="CHECK" name="USE_HDFS_ENCRYPTION" value="false"/>
+    <elementParameter field="TEXT" name="HDFS_ENCRYPTION_KEY_PROVIDER" value="&quot;kms://http@localhost:16000/kms&quot;" show="false"/>
+    <elementParameter field="CHECK" name="SET_MAPR_HOME_DIR" value="false" show="false"/>
+    <elementParameter field="TEXT" name="MAPR_HOME_DIR" value="&quot;/opt/mapr&quot;" show="false"/>
+    <elementParameter field="CHECK" name="SET_HADOOP_LOGIN" value="false" show="false"/>
+    <elementParameter field="TEXT" name="HADOOP_LOGIN" value="&quot;kerberos&quot;" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="EMR_46_HDFS"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <node componentName="tRunJob" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1088" posY="512">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tRunJob_1" show="false"/>
+    <elementParameter field="CHECK" name="USE_DYNAMIC_JOB" value="false"/>
+    <elementParameter field="TEXT" name="CONTEXT_JOB" value="" show="false"/>
+    <elementParameter field="PROCESS_TYPE" name="PROCESS" value="RDBMS_to_HDFS_Step2"/>
+    <elementParameter field="TECHNICAL" name="PROCESS:PROCESS_TYPE_CONTEXT" value="Default"/>
+    <elementParameter field="TECHNICAL" name="PROCESS:PROCESS_TYPE_PROCESS" value="_kAP1IMlOEeeJeob3yjK3aw"/>
+    <elementParameter field="TECHNICAL" name="PROCESS:PROCESS_TYPE_VERSION" value="0.1"/>
+    <elementParameter field="TEXT" name="CONTEXT_NAME" value="Default" show="false"/>
+    <elementParameter field="CHECK" name="USE_INDEPENDENT_PROCESS" value="true"/>
+    <elementParameter field="CHECK" name="DIE_ON_CHILD_ERROR" value="false"/>
+    <elementParameter field="CHECK" name="TRANSMIT_WHOLE_CONTEXT" value="true"/>
+    <elementParameter field="TABLE" name="CONTEXTPARAMS">
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="table_name"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="((String)globalMap.get(&quot;tableInfoList.TableName&quot;))"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="column_list"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="((String)globalMap.get(&quot;tableInfoList.Column_List&quot;))"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="numPartitions"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="context.numPartitions"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="pk_column"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="context.pk_column"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="lowerBound"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="context.lowerBound"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="upperBound"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="context.upperBound"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="TARGET_HDFS_DIRECTORY_FOR_DATA"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="context.TARGET_HDFS_DIRECTORY_FOR_DATA"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="PROPAGATE_CHILD_RESULT" value="false" show="false"/>
+    <elementParameter field="CHECK" name="PRINT_PARAMETER" value="false"/>
+    <elementParameter field="CHECK" name="TRANSMIT_ORIGINAL_CONTEXT" value="true" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="DB INGESTION TO HADOOP"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tRunJob_1"/>
+  </node>
+  <node componentName="tJDBCInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="224" posY="1056">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJDBCInput_2" show="false"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tJDBCConnection_2"/>
+    <elementParameter field="TEXT" name="URL" value="&quot;jdbc:mysql://&quot;+context.DB_FOR_AUDIT_HOST+&quot;:&quot;+context.DB_FOR_AUDIT_PORT+&quot;/&quot;+context.DB_FOR_AUDIT_NAME+&quot;?user=&quot;+context.DB_FOR_AUDIT_USER+&quot;&amp;password=&quot;+context.DB_FOR_AUDIT_PWD+&quot;&amp;zeroDateTimeBehavior=convertToNull&quot;" show="false"/>
+    <elementParameter field="TABLE" name="DRIVER_JAR" show="false">
+      <elementValue elementRef="JAR_NAME" value="mysql-connector-java-5.1.30-bin.jar"/>
+    </elementParameter>
+    <elementParameter field="TEXT" name="DRIVER_CLASS" value="context.DB_TO_MIGRATE_DRIVER_CLASS" show="false"/>
+    <elementParameter field="TEXT" name="USER" value="context.DB_FOR_AUDIT_USER" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="8pW6Nmy2kueeURE84uh2tyXLd0dB8cKxaYspkiFmp/Q=" show="false"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;audit_load_status&quot;"/>
+    <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
+    <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT &#xD;&#xA;  audit_load_status.load_id, &#xD;&#xA;  audit_load_status.source_extract_date, &#xD;&#xA;  audit_load_status.source_type, &#xD;&#xA;  audit_load_status.source_name, &#xD;&#xA;  audit_load_status.source_desc, &#xD;&#xA;  audit_load_status.source_partition_name, &#xD;&#xA;  audit_load_status.source_rowcount, &#xD;&#xA;  audit_load_status.source_balance_number, &#xD;&#xA;  audit_load_status.target_type, &#xD;&#xA;  audit_load_status.target_name, &#xD;&#xA;  audit_load_status.target_desc, &#xD;&#xA;  audit_load_status.target_partition_name, &#xD;&#xA;  audit_load_status.target_success_rowcount, &#xD;&#xA;  audit_load_status.target_failed_rowcount, &#xD;&#xA;  audit_load_status.target_balance_number, &#xD;&#xA;  audit_load_status.load_status, &#xD;&#xA;  audit_load_status.error_message, &#xD;&#xA;  audit_load_status.load_start_datetime, &#xD;&#xA;  audit_load_status.load_end_datetime, &#xD;&#xA;  audit_load_status.insert_datetime, &#xD;&#xA;  audit_load_status.insert_user&#xD;&#xA;FROM &quot;+context.DB_FOR_AUDIT_NAME+&quot;.audit_load_status&#xD;&#xA;where  audit_load_status.source_name = '&quot;+((String)globalMap.get(&quot;tableInfoList.TableName&quot;))+&quot;'&quot;"/>
+    <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime" show="false"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false" show="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="CHECK" name="USE_CURSOR" value="false"/>
+    <elementParameter field="TEXT" name="CURSOR_SIZE" value="1000" show="false"/>
+    <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="false"/>
+    <elementParameter field="TABLE" name="TRIM_COLUMN">
+      <elementValue elementRef="SCHEMA_COLUMN" value="load_id"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="source_extract_date"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="source_type"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="source_name"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="source_desc"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="source_partition_name"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="source_rowcount"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="source_balance_number"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="target_type"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="target_name"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="target_desc"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="target_partition_name"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="target_success_rowcount"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="target_failed_rowcount"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="target_balance_number"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="load_status"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="error_message"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="load_start_datetime"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="load_end_datetime"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="insert_datetime"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="insert_user"/>
+      <elementValue elementRef="TRIM" value="false"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="ENABLE_MAPPING" value="false"/>
+    <elementParameter field="CLOSED_LIST" name="MAPPING" value="mysql_id" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="Tag Audit status"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJDBCInput_2">
+      <column comment="" key="true" length="10" name="load_id" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="source_extract_date" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="source_type" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="source_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="source_desc" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="source_partition_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="source_rowcount" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="source_balance_number" nullable="true" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="target_type" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="target_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="target_desc" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="target_partition_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="target_success_rowcount" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="target_failed_rowcount" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="target_balance_number" nullable="true" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="load_status" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="65535" name="error_message" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="load_start_datetime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="load_end_datetime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="insert_datetime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="insert_user" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+    </metadata>
+  </node>
+  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="576" posY="1056">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tMap_5" show="false"/>
+    <elementParameter field="EXTERNAL" name="MAP" value=""/>
+    <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
+    <elementParameter field="DIRECTORY" name="TEMPORARY_DATA_DIRECTORY" value=""/>
+    <elementParameter field="IMAGE" name="PREVIEW" value="_TpKucMlNEeeJeob3yjK3aw-tMap_5-PREVIEW.bmp"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true" show="false"/>
+    <elementParameter field="CHECK" name="LKUP_PARALLELIZE" value="false" show="false"/>
+    <elementParameter field="CHECK" name="ENABLE_AUTO_CONVERT_TYPE" value="false" show="false"/>
+    <elementParameter field="TEXT" name="ROWS_BUFFER_SIZE" value="2000000"/>
+    <elementParameter field="CHECK" name="CHANGE_HASH_AND_EQUALS_FOR_BIGDECIMAL" value="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="audit_load_status" name="load_result">
+      <column comment="" key="false" length="255" name="source_type" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="source_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="target_success_rowcount" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="target_failed_rowcount" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="load_status" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="65535" name="error_message" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="insert_datetime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="target_balance_number" nullable="true" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <additionalProperties key="Comment" value=""/>
+    </metadata>
+    <nodeData xsi:type="TalendMapper:MapperData">
+      <uiProperties/>
+      <varTables sizeState="INTERMEDIATE" name="Var">
+        <mapperTableEntries name="isIdenticalRowCount" expression="row6.source_rowcount.intValue() == row6.target_success_rowcount.intValue() " type="id_Boolean"/>
+      </varTables>
+      <outputTables sizeState="INTERMEDIATE" name="load_result">
+        <mapperTableEntries name="source_type" expression="row6.source_type" type="id_String" nullable="true"/>
+        <mapperTableEntries name="source_name" expression="row6.source_name" type="id_String" nullable="true"/>
+        <mapperTableEntries name="target_success_rowcount" expression="Var.isIdenticalRowCount ? row6.target_success_rowcount  : null" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="target_failed_rowcount" expression="!Var.isIdenticalRowCount ? row6.target_success_rowcount  : null" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="load_status" expression="Var.isIdenticalRowCount ? &quot;success&quot; : &quot;failure&quot;" type="id_String" nullable="true"/>
+        <mapperTableEntries name="error_message" expression="Var.isIdenticalRowCount ? &quot;&quot; : &quot;Row count different between source and target&quot;" type="id_String" nullable="true"/>
+        <mapperTableEntries name="insert_datetime" expression="TalendDate.getCurrentDate()" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="target_balance_number" expression="" type="id_Long" nullable="true"/>
+      </outputTables>
+      <inputTables sizeState="INTERMEDIATE" name="row6" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+        <mapperTableEntries name="load_id" type="id_Integer"/>
+        <mapperTableEntries name="source_extract_date" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="source_type" type="id_String" nullable="true"/>
+        <mapperTableEntries name="source_name" type="id_String" nullable="true"/>
+        <mapperTableEntries name="source_desc" type="id_String" nullable="true"/>
+        <mapperTableEntries name="source_partition_name" type="id_String" nullable="true"/>
+        <mapperTableEntries name="source_rowcount" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="source_balance_number" type="id_Long" nullable="true"/>
+        <mapperTableEntries name="target_type" type="id_String" nullable="true"/>
+        <mapperTableEntries name="target_name" type="id_String" nullable="true"/>
+        <mapperTableEntries name="target_desc" type="id_String" nullable="true"/>
+        <mapperTableEntries name="target_partition_name" type="id_String" nullable="true"/>
+        <mapperTableEntries name="target_success_rowcount" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="target_failed_rowcount" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="target_balance_number" type="id_Long" nullable="true"/>
+        <mapperTableEntries name="load_status" type="id_String" nullable="true"/>
+        <mapperTableEntries name="error_message" type="id_String" nullable="true"/>
+        <mapperTableEntries name="load_start_datetime" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="load_end_datetime" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="insert_datetime" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="insert_user" type="id_String" nullable="true"/>
+      </inputTables>
+    </nodeData>
+  </node>
+  <node componentName="tJDBCOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1088" posY="1056">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJDBCOutput_5" show="false"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tJDBCConnection_2"/>
+    <elementParameter field="TEXT" name="URL" value="&quot;jdbc:mysql://&quot;+context.DB_FOR_AUDIT_HOST+&quot;:&quot;+context.DB_FOR_AUDIT_PORT+&quot;/&quot;+context.DB_FOR_AUDIT_NAME+&quot;?user=&quot;+context.DB_FOR_AUDIT_USER+&quot;&amp;password=&quot;+context.DB_FOR_AUDIT_PWD+&quot;&amp;zeroDateTimeBehavior=convertToNull&quot;" show="false"/>
+    <elementParameter field="TABLE" name="DRIVER_JAR" show="false">
+      <elementValue elementRef="JAR_NAME" value="mysql-connector-java-5.1.30-bin.jar"/>
+    </elementParameter>
+    <elementParameter field="TEXT" name="DRIVER_CLASS" value="context.DB_TO_MIGRATE_DRIVER_CLASS" show="false"/>
+    <elementParameter field="TEXT" name="USER" value="context.DB_FOR_AUDIT_USER" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="8pW6Nmy2kueeURE84uh2tyXLd0dB8cKxaYspkiFmp/Q=" show="false"/>
+    <elementParameter field="TEXT" name="TABLE" value="&quot;audit_load_status&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="UPDATE"/>
+    <elementParameter field="CHECK" name="CLEAR_TABLE" value="false"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime" show="false"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false" show="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="TEXT" name="COMMIT_EVERY" value="10000" show="false"/>
+    <elementParameter field="TABLE" name="ADD_COLS"/>
+    <elementParameter field="CHECK" name="USE_FIELD_OPTIONS" value="true"/>
+    <elementParameter field="TABLE" name="FIELD_OPTIONS">
+      <elementValue elementRef="SCHEMA_COLUMN" value="source_type"/>
+      <elementValue elementRef="UPDATE_KEY" value="true"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="false"/>
+      <elementValue elementRef="INSERTABLE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="source_name"/>
+      <elementValue elementRef="UPDATE_KEY" value="true"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="false"/>
+      <elementValue elementRef="INSERTABLE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="target_success_rowcount"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="target_failed_rowcount"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="load_status"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="error_message"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="insert_datetime"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="target_balance_number"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="false"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="ENABLE_DEBUG_MODE" value="false"/>
+    <elementParameter field="CHECK" name="USE_BATCH_SIZE" value="true" show="false"/>
+    <elementParameter field="CHECK" name="USE_BATCH_AND_USE_CONN" value="false"/>
+    <elementParameter field="TEXT" name="BATCH_SIZE" value="10000" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="Tag Audit status"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="audit_load_status" name="tJDBCOutput_5">
+      <column comment="" key="false" length="255" name="source_type" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="source_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="target_success_rowcount" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="target_failed_rowcount" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="load_status" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="65535" name="error_message" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="insert_datetime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="target_balance_number" nullable="true" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <additionalProperties key="Comment" value=""/>
+    </metadata>
+    <metadata connector="REJECT" label="audit_load_status" name="REJECT">
+      <column comment="" key="false" length="255" name="source_type" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="source_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="target_success_rowcount" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="target_failed_rowcount" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="load_status" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="65535" name="error_message" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="insert_datetime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="target_balance_number" nullable="true" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <additionalProperties key="Comment" value=""/>
+    </metadata>
+  </node>
+  <node componentName="tSqoopImport" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1024" posY="640">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tSqoopImport_1" show="false"/>
+    <elementParameter field="LABEL" name="NOTE_COMMANDINE" value="The available options are based on Sqoop 1.4.4. If you use&#xA;&#x9;&#x9;&#x9;&#x9;an earlier version, read the Sqoop documentation in order to find&#xA;&#x9;&#x9;&#x9;&#x9;those which are not available.&#xA;&#x9;&#x9;&#x9;" show="false"/>
+    <elementParameter field="RADIO" name="USE_COMMANDLINE" value="false"/>
+    <elementParameter field="RADIO" name="USE_JAVAAPI" value="true"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="EMR_4_6_0"/>
+    <elementParameter field="HADOOP_DISTRIBUTION" name="SQOOP" value=""/>
+    <elementParameter field="HADOOP_JARS_DIALOG" name="HADOOP_CUSTOM_JARS" value="" show="false"/>
+    <elementParameter field="CHECK" name="USE_YARN" value="false" show="false"/>
+    <elementParameter field="CHECK" name="CROSS_PLATFORM_SUBMISSION" value="false" show="false"/>
+    <elementParameter field="TEXT" name="FS_DEFAULT_NAME" value="&quot;hdfs://&quot;+context.HADOOP_HOST+&quot;:8020&quot;"/>
+    <elementParameter field="TEXT" name="MAPRED_JOB_TRACKER" value="&quot;localhost:8021&quot;" show="false"/>
+    <elementParameter field="TEXT" name="RESOURCE_MANAGER" value="context.HADOOP_HOST+&quot;:8032&quot;"/>
+    <elementParameter field="CHECK" name="SET_SCHEDULER_ADDRESS" value="true"/>
+    <elementParameter field="TEXT" name="RESOURCEMANAGER_SCHEDULER_ADDRESS" value="context.HADOOP_HOST+&quot;:8030&quot;"/>
+    <elementParameter field="CHECK" name="SET_JOBHISTORY_ADDRESS" value="true"/>
+    <elementParameter field="TEXT" name="JOBHISTORY_ADDRESS" value="context.HADOOP_HOST+&quot;:10020&quot;"/>
+    <elementParameter field="CHECK" name="SET_STAGING_DIRECTORY" value="true"/>
+    <elementParameter field="TEXT" name="STAGING_DIRECTORY" value="&quot;/user&quot;"/>
+    <elementParameter field="CHECK" name="USE_DATANODE_HOSTNAME" value="true"/>
+    <elementParameter field="CHECK" name="USE_KRB" value="false" show="false"/>
+    <elementParameter field="TEXT" name="NAMENODE_PRINCIPAL" value="&quot;nn/_HOST@EXAMPLE.COM&quot;" show="false"/>
+    <elementParameter field="TEXT" name="JOBTRACKER_PRINCIPAL" value="&quot;jt/_HOST@EXAMPLE.COM&quot;" show="false"/>
+    <elementParameter field="TEXT" name="RESOURCEMANAGER_PRINCIPAL" value="&quot;yarn/_HOST@EXAMPLE.COM&quot;" show="false"/>
+    <elementParameter field="TEXT" name="JOBHISTORY_PRINCIPAL" value="&quot;mapred/_HOST@EXAMPLE.COM&quot;" show="false"/>
+    <elementParameter field="CHECK" name="USE_KEYTAB" value="false" show="false"/>
+    <elementParameter field="TEXT" name="PRINCIPAL" value="&quot;hdfs&quot;" show="false"/>
+    <elementParameter field="FILE" name="KEYTAB_PATH" value="&quot;/tmp/hdfs.headless.keytab&quot;" show="false"/>
+    <elementParameter field="CHECK" name="USE_MAPRTICKET" value="false" show="false"/>
+    <elementParameter field="TEXT" name="MAPRTICKET_USERNAME" value="&quot;&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="MAPRTICKET_PASSWORD" value="0RMsyjmybrE=" show="false"/>
+    <elementParameter field="TEXT" name="MAPRTICKET_CLUSTER" value="&quot;demo.mapr.com&quot;" show="false"/>
+    <elementParameter field="TEXT" name="MAPRTICKET_DURATION" value="86400L" show="false"/>
+    <elementParameter field="TEXT" name="HADOOP_USER" value="context.HADOOP_USER"/>
+    <elementParameter field="TEXT" name="CONNECTION" value="&quot;jdbc:&quot;+context.DB_TO_MIGRATE_DBTYPE+&quot;://&quot;+context.DB_TO_MIGRATE_HOST+&quot;:&quot;+context.DB_TO_MIGRATE_PORT+&quot;/&quot;+context.DB_TO_MIGRATE_NAME+&quot;?user=&quot;+context.DB_TO_MIGRATE_USER+&quot;&amp;password=&quot;+context.DB_TO_MIGRATE_PWD+&quot;&amp;zeroDateTimeBehavior=convertToNull&quot;"/>
+    <elementParameter field="TEXT" name="USERNAME" value="context.DB_TO_MIGRATE_USER"/>
+    <elementParameter field="CHECK" name="PASSWORD_STORED_IN_FILE" value="false"/>
+    <elementParameter field="TEXT" name="PASSWORD_FILE" value="&quot;file:///&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="PASSWORD" value="8pW6Nmy2kudqcCLq2qlGU4BmBcDfWDkO3DH4Hlwasb4="/>
+    <elementParameter field="TABLE" name="DRIVER_JAR">
+      <elementValue elementRef="JAR_NAME" value="mysql-connector-java-5.1.30-bin.jar"/>
+    </elementParameter>
+    <elementParameter field="TEXT" name="DRIVER_CLASS" value="context.DB_TO_MIGRATE_DRIVER_CLASS"/>
+    <elementParameter field="TEXT" name="TABLE" value="((String)globalMap.get(&quot;tableInfoList.TableName&quot;))"/>
+    <elementParameter field="CLOSED_LIST" name="FILE_FORMAT" value="textfile"/>
+    <elementParameter field="CHECK" name="DELETE_TARGET_DIR" value="true"/>
+    <elementParameter field="CHECK" name="APPEND" value="false"/>
+    <elementParameter field="CHECK" name="COMPRESS" value="false"/>
+    <elementParameter field="CHECK" name="DEFINE_HADOOP_CODEC" value="false" show="false"/>
+    <elementParameter field="TEXT" name="HADOOP_CODEC" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="DIRECT" value="false"/>
+    <elementParameter field="CHECK" name="DEFINE_DIRECT_SPLIT_SIZE" value="false" show="false"/>
+    <elementParameter field="TEXT" name="DIRECT_SPLIT_SIZE" value="&quot;1024&quot;" show="false"/>
+    <elementParameter field="CHECK" name="USE_COLUMNS" value="false"/>
+    <elementParameter field="TABLE" name="COLUMNS" show="false"/>
+    <elementParameter field="CHECK" name="USE_WHERE" value="false"/>
+    <elementParameter field="TEXT" name="WHERE" value="&quot;id>0&quot;" show="false"/>
+    <elementParameter field="CHECK" name="USE_QUERY" value="false"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select id, name from employee where $CONDITIONS&quot;" show="false"/>
+    <elementParameter field="LABEL" name="QUERY_LABEL" value="When importing a free-form query, you must specify a&#xA;&#x9;&#x9;&#x9;&#x9;destination directory. If you want to import the results of a query&#xA;&#x9;&#x9;&#x9;&#x9;in parallel, you must select a splitting column with --split-by&#xA;&#x9;&#x9;&#x9;" show="false"/>
+    <elementParameter field="CHECK" name="USE_TARGET" value="true"/>
+    <elementParameter field="TEXT" name="TARGET" value="context.TARGET_HDFS_DIRECTORY_FOR_DATA+((String)globalMap.get(&quot;tableInfoList.TableName&quot;))"/>
+    <elementParameter field="CHECK" name="USE_SPLIT" value="true"/>
+    <elementParameter field="TEXT" name="SPLIT" value="context.pk_column"/>
+    <elementParameter field="CHECK" name="USE_MAPPERS" value="true"/>
+    <elementParameter field="TEXT" name="MAPPERS" value="context.numPartitions"/>
+    <elementParameter field="CHECK" name="PRINT_LOG" value="true"/>
+    <elementParameter field="CHECK" name="VERBOSE" value="true"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="CHECK" name="MYSQL_DELIMITERS" value="false" show="false"/>
+    <elementParameter field="CHECK" name="DEFINE_JAVA_MAPPING" value="false"/>
+    <elementParameter field="TABLE" name="JAVA_TYPE_MAPPING" show="false"/>
+    <elementParameter field="CHECK" name="DEFINE_HIVE_MAPPING" value="false"/>
+    <elementParameter field="TABLE" name="HIVE_TYPE_MAPPING" show="false"/>
+    <elementParameter field="TABLE" name="ADDITIONAL_ARGUMENTS" show="false"/>
+    <elementParameter field="TEXT" name="ADDITIONAL_COMMANDLINE_ARGUMENTS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TABLE" name="ADDITIONAL_JAVA"/>
+    <elementParameter field="CHECK" name="USE_SPEED_PARALLEL" value="false" show="false"/>
+    <elementParameter field="LABEL" name="NOTE_CUSTOMER" value="This function only applies for HDP and Teradata" show="false"/>
+    <elementParameter field="TABLE" name="SPECIFIC_PARAMS" show="false"/>
+    <elementParameter field="CHECK" name="USE_ADDITION_PARAM" value="false" show="false"/>
+    <elementParameter field="TEXT" name="SPECIFIC_ADDITION_PARAM" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TABLE" name="HADOOP_ADVANCED_PROPERTIES"/>
+    <elementParameter field="TEXT" name="MAPRED_JOB_MAP_MEMORY_MB" value="&quot;1000&quot;" show="false"/>
+    <elementParameter field="TEXT" name="MAPRED_JOB_REDUCE_MEMORY_MB" value="&quot;1000&quot;" show="false"/>
+    <elementParameter field="CHECK" name="SET_MEMORY" value="false"/>
+    <elementParameter field="TEXT" name="MAPREDUCE_MAP_MEMORY_MB" value="&quot;1024&quot;" show="false"/>
+    <elementParameter field="TEXT" name="MAPREDUCE_REDUCE_MEMORY_MB" value="&quot;1024&quot;" show="false"/>
+    <elementParameter field="TEXT" name="YARN_APP_MAPREDUCE_AM_RESOURCE_MB" value="&quot;1024&quot;" show="false"/>
+    <elementParameter field="TEXT" name="CLASSPATH_SEPARATOR" value="&quot;:&quot;"/>
+    <elementParameter field="CHECK" name="SET_MAPR_HOME_DIR" value="false" show="false"/>
+    <elementParameter field="TEXT" name="MAPR_HOME_DIR" value="&quot;/opt/mapr&quot;" show="false"/>
+    <elementParameter field="CHECK" name="SET_HADOOP_LOGIN" value="false" show="false"/>
+    <elementParameter field="TEXT" name="HADOOP_LOGIN" value="&quot;kerberos&quot;" show="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="544" posY="544">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJava_1" show="false"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="System.out.println(&quot;Start moving data from RDBMS to HDFS with &quot;+context.Ingestion_Style+&quot; - &quot;+((String)globalMap.get(&quot;tableInfoList.TableName&quot;))+&quot;-&quot;+((String)globalMap.get(&quot;tableInfoList.Column_List&quot;)));"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="LABEL" value="Print Progress"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJava_1"/>
+  </node>
+  <node componentName="tJDBCInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="544" posY="320">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJDBCInput_1" show="false"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tJDBCConnection_1"/>
+    <elementParameter field="TEXT" name="URL" value="&quot;jdbc:&quot;" show="false"/>
+    <elementParameter field="TABLE" name="DRIVER_JAR" show="false"/>
+    <elementParameter field="TEXT" name="DRIVER_CLASS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="USER" value="&quot;&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="0RMsyjmybrE=" show="false"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="((String)globalMap.get(&quot;tableInfoList.TableName&quot;))"/>
+    <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
+    <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select count(*), min(&quot;+context.pk_column+&quot;), max(&quot;+context.pk_column+&quot;) from &quot;+((String)globalMap.get(&quot;tableInfoList.TableName&quot;))"/>
+    <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime" show="false"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false" show="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="CHECK" name="USE_CURSOR" value="false"/>
+    <elementParameter field="TEXT" name="CURSOR_SIZE" value="1000" show="false"/>
+    <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="false"/>
+    <elementParameter field="TABLE" name="TRIM_COLUMN">
+      <elementValue elementRef="SCHEMA_COLUMN" value="CountRows"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="lowerBound"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="upperBound"/>
+      <elementValue elementRef="TRIM" value="false"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="ENABLE_MAPPING" value="false"/>
+    <elementParameter field="CLOSED_LIST" name="MAPPING" value="mysql_id" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="Extract Table Info"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJDBCInput_1">
+      <column comment="" key="false" length="-1" name="CountRows" nullable="true" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="lowerBound" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="upperBound" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="800" posY="320">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tMap_1" show="false"/>
+    <elementParameter field="EXTERNAL" name="MAP" value=""/>
+    <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
+    <elementParameter field="DIRECTORY" name="TEMPORARY_DATA_DIRECTORY" value=""/>
+    <elementParameter field="IMAGE" name="PREVIEW" value="_TpKucMlNEeeJeob3yjK3aw-tMap_1-PREVIEW.bmp"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true" show="false"/>
+    <elementParameter field="CHECK" name="LKUP_PARALLELIZE" value="false" show="false"/>
+    <elementParameter field="CHECK" name="ENABLE_AUTO_CONVERT_TYPE" value="false" show="false"/>
+    <elementParameter field="TEXT" name="ROWS_BUFFER_SIZE" value="2000000"/>
+    <elementParameter field="CHECK" name="CHANGE_HASH_AND_EQUALS_FOR_BIGDECIMAL" value="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="audit_load_status" name="start_movement">
+      <column comment="" key="true" length="10" name="load_id" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="source_extract_date" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="source_type" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="source_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="source_desc" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="source_partition_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="source_rowcount" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="source_balance_number" nullable="true" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="target_type" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="target_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="target_desc" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="target_partition_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="target_success_rowcount" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="target_failed_rowcount" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="target_balance_number" nullable="true" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="load_status" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="65535" name="error_message" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="load_start_datetime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="load_end_datetime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="insert_datetime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="insert_user" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <additionalProperties key="Comment" value=""/>
+    </metadata>
+    <metadata connector="FLOW" name="setUpper">
+      <column comment="" key="false" length="-1" name="key" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="value" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+    <metadata connector="FLOW" name="setLower">
+      <column comment="" key="false" length="-1" name="key" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="value" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+    <nodeData xsi:type="TalendMapper:MapperData">
+      <uiProperties/>
+      <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
+      <outputTables sizeState="INTERMEDIATE" name="start_movement">
+        <mapperTableEntries name="load_id" expression="" type="id_Integer"/>
+        <mapperTableEntries name="source_extract_date" expression="TalendDate.getCurrentDate()" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="source_type" expression="&quot;Table&quot;" type="id_String" nullable="true"/>
+        <mapperTableEntries name="source_name" expression="((String)globalMap.get(&quot;tableInfoList.TableName&quot;))" type="id_String" nullable="true"/>
+        <mapperTableEntries name="source_desc" expression="((String)globalMap.get(&quot;tableInfoList.TableName&quot;))" type="id_String" nullable="true"/>
+        <mapperTableEntries name="source_partition_name" expression="&quot;&quot;" type="id_String" nullable="true"/>
+        <mapperTableEntries name="source_rowcount" expression="row4.CountRows " type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="source_balance_number" expression="" type="id_Long" nullable="true"/>
+        <mapperTableEntries name="target_type" expression="&quot;File&quot;" type="id_String" nullable="true"/>
+        <mapperTableEntries name="target_name" expression="context.TARGET_HDFS_DIRECTORY_FOR_DATA+((String)globalMap.get(&quot;tableInfoList.TableName&quot;))" type="id_String" nullable="true"/>
+        <mapperTableEntries name="target_desc" expression="context.TARGET_HDFS_DIRECTORY_FOR_DATA+((String)globalMap.get(&quot;tableInfoList.TableName&quot;))" type="id_String" nullable="true"/>
+        <mapperTableEntries name="target_partition_name" expression="&quot;&quot;" type="id_String" nullable="true"/>
+        <mapperTableEntries name="target_success_rowcount" expression="" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="target_failed_rowcount" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="target_balance_number" type="id_Long" nullable="true"/>
+        <mapperTableEntries name="load_status" expression="&quot;progress&quot;" type="id_String" nullable="true"/>
+        <mapperTableEntries name="error_message" expression="&quot;&quot;" type="id_String" nullable="true"/>
+        <mapperTableEntries name="load_start_datetime" expression="TalendDate.getCurrentDate()" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="load_end_datetime" expression="TalendDate.getCurrentDate()" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="insert_datetime" expression="TalendDate.getCurrentDate()" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="insert_user" expression="&quot;Talend&quot;" type="id_String" nullable="true"/>
+      </outputTables>
+      <outputTables sizeState="INTERMEDIATE" name="setUpper">
+        <mapperTableEntries name="key" expression="&quot;lowerBound&quot;" type="id_String" nullable="true"/>
+        <mapperTableEntries name="value" expression="row4.lowerBound " type="id_String" nullable="true"/>
+      </outputTables>
+      <outputTables sizeState="INTERMEDIATE" name="setLower">
+        <mapperTableEntries name="key" expression="&quot;upperBound&quot;" type="id_String" nullable="true"/>
+        <mapperTableEntries name="value" expression="row4.upperBound " type="id_String" nullable="true"/>
+      </outputTables>
+      <inputTables sizeState="INTERMEDIATE" name="row4" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+        <mapperTableEntries name="CountRows" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="lowerBound" type="id_String" nullable="true"/>
+        <mapperTableEntries name="upperBound" type="id_String" nullable="true"/>
+      </inputTables>
+    </nodeData>
+  </node>
+  <node componentName="tContextLoad" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1152" posY="384">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tContextLoad_1" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="LOAD_NEW_VARIABLE" value="Warning"/>
+    <elementParameter field="CLOSED_LIST" name="NOT_LOAD_OLD_VARIABLE" value="Warning"/>
+    <elementParameter field="CHECK" name="PRINT_OPERATIONS" value="true"/>
+    <elementParameter field="CHECK" name="DISABLE_ERROR" value="false"/>
+    <elementParameter field="CHECK" name="DISABLE_WARNINGS" value="true"/>
+    <elementParameter field="CHECK" name="DISABLE_INFO" value="true"/>
+    <elementParameter field="CHECK" name="DIEONERROR" value="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tContextLoad_1">
+      <column defaultValue="" key="false" length="255" name="key" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="value" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tContextLoad" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1152" posY="256">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tContextLoad_2" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="LOAD_NEW_VARIABLE" value="Warning"/>
+    <elementParameter field="CLOSED_LIST" name="NOT_LOAD_OLD_VARIABLE" value="Warning"/>
+    <elementParameter field="CHECK" name="PRINT_OPERATIONS" value="true"/>
+    <elementParameter field="CHECK" name="DISABLE_ERROR" value="false"/>
+    <elementParameter field="CHECK" name="DISABLE_WARNINGS" value="true"/>
+    <elementParameter field="CHECK" name="DISABLE_INFO" value="true"/>
+    <elementParameter field="CHECK" name="DIEONERROR" value="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tContextLoad_2">
+      <column defaultValue="" key="false" length="255" name="key" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="value" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tJDBCOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1152" posY="320">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJDBCOutput_1" show="false"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tJDBCConnection_2"/>
+    <elementParameter field="TEXT" name="URL" value="&quot;jdbc:mysql://&quot;+context.DB_FOR_AUDIT_HOST+&quot;:&quot;+context.DB_FOR_AUDIT_PORT+&quot;/&quot;+context.DB_FOR_AUDIT_NAME+&quot;?user=&quot;+context.DB_FOR_AUDIT_USER+&quot;&amp;password=&quot;+context.DB_FOR_AUDIT_PWD+&quot;&amp;zeroDateTimeBehavior=convertToNull&quot;" show="false"/>
+    <elementParameter field="TABLE" name="DRIVER_JAR" show="false">
+      <elementValue elementRef="JAR_NAME" value="mysql-connector-java-5.1.30-bin.jar"/>
+    </elementParameter>
+    <elementParameter field="TEXT" name="DRIVER_CLASS" value="context.DB_TO_MIGRATE_DRIVER_CLASS" show="false"/>
+    <elementParameter field="TEXT" name="USER" value="context.DB_FOR_AUDIT_USER" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="8pW6Nmy2kueeURE84uh2tyXLd0dB8cKxaYspkiFmp/Q=" show="false"/>
+    <elementParameter field="TEXT" name="TABLE" value="&quot;audit_load_status&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="INSERT"/>
+    <elementParameter field="CHECK" name="CLEAR_TABLE" value="false"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime" show="false"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false" show="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="TEXT" name="COMMIT_EVERY" value="10000" show="false"/>
+    <elementParameter field="TABLE" name="ADD_COLS"/>
+    <elementParameter field="CHECK" name="USE_FIELD_OPTIONS" value="true"/>
+    <elementParameter field="TABLE" name="FIELD_OPTIONS">
+      <elementValue elementRef="SCHEMA_COLUMN" value="load_id"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="source_extract_date"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="source_type"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="source_name"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="source_desc"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="source_partition_name"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="source_rowcount"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="source_balance_number"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="target_type"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="target_name"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="target_desc"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="target_partition_name"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="target_success_rowcount"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="target_failed_rowcount"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="target_balance_number"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="load_status"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="error_message"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="load_start_datetime"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="load_end_datetime"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="insert_datetime"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="insert_user"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="ENABLE_DEBUG_MODE" value="false"/>
+    <elementParameter field="CHECK" name="USE_BATCH_SIZE" value="true" show="false"/>
+    <elementParameter field="CHECK" name="USE_BATCH_AND_USE_CONN" value="false"/>
+    <elementParameter field="TEXT" name="BATCH_SIZE" value="10000" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="Tag Audit status"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="audit_load_status" name="tJDBCOutput_1">
+      <column comment="" key="true" length="10" name="load_id" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="source_extract_date" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="source_type" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="source_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="source_desc" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="source_partition_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="source_rowcount" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="source_balance_number" nullable="true" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="target_type" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="target_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="target_desc" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="target_partition_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="target_success_rowcount" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="target_failed_rowcount" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="target_balance_number" nullable="true" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="load_status" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="65535" name="error_message" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="load_start_datetime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="load_end_datetime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="insert_datetime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="insert_user" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <additionalProperties key="Comment" value=""/>
+    </metadata>
+    <metadata connector="REJECT" label="audit_load_status" name="REJECT">
+      <column comment="" key="true" length="10" name="load_id" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="source_extract_date" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="source_type" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="source_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="source_desc" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="source_partition_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="source_rowcount" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="source_balance_number" nullable="true" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="target_type" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="target_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="target_desc" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="target_partition_name" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="target_success_rowcount" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="10" name="target_failed_rowcount" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="target_balance_number" nullable="true" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="load_status" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="65535" name="error_message" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="load_start_datetime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="load_end_datetime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="19" name="insert_datetime" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column comment="" key="false" length="255" name="insert_user" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
+        <additionalField key="Comment" value=""/>
+      </column>
+      <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <additionalProperties key="Comment" value=""/>
+    </metadata>
+  </node>
+  <node componentName="tJDBCConnection" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="32" posY="0">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJDBCConnection_2" show="false"/>
+    <elementParameter field="TEXT" name="URL" value="&quot;jdbc:mysql://&quot;+context.DB_FOR_AUDIT_HOST+&quot;:&quot;+context.DB_FOR_AUDIT_PORT+&quot;/&quot;+context.DB_FOR_AUDIT_NAME+&quot;?user=&quot;+context.DB_FOR_AUDIT_USER+&quot;&amp;password=&quot;+context.DB_FOR_AUDIT_PWD+&quot;&amp;zeroDateTimeBehavior=convertToNull&quot;"/>
+    <elementParameter field="TABLE" name="DRIVER_JAR">
+      <elementValue elementRef="JAR_NAME" value="mysql-connector-java-5.1.30-bin.jar"/>
+      <elementValue elementRef="JAR_NAME" value="postgresql-9.4-1201.jdbc41.jar"/>
+      <elementValue elementRef="JAR_NAME" value="ojdbc7.jar"/>
+    </elementParameter>
+    <elementParameter field="TEXT" name="DRIVER_CLASS" value="context.DB_TO_MIGRATE_DRIVER_CLASS"/>
+    <elementParameter field="TEXT" name="USER" value="context.DB_FOR_AUDIT_USER"/>
+    <elementParameter field="PASSWORD" name="PASS" value="8pW6Nmy2kueeURE84uh2tyXLd0dB8cKxaYspkiFmp/Q="/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="CHECK" name="USE_SHARED_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="SHARED_CONNECTION_NAME" value="" show="false"/>
+    <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="IS_USE_AUTO_COMMIT" value="true"/>
+    <elementParameter field="CHECK" name="AUTO_COMMIT" value="true"/>
+    <elementParameter field="TEXT" name="LABEL" value="Db_For_Audit"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+  </node>
+  <node componentName="tJDBCRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="0" posY="192">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJDBCRow_1" show="false"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tJDBCConnection_2"/>
+    <elementParameter field="TEXT" name="URL" value="&quot;jdbc:&quot;" show="false"/>
+    <elementParameter field="TABLE" name="DRIVER_JAR" show="false"/>
+    <elementParameter field="TEXT" name="DRIVER_CLASS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="USER" value="&quot;&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="0RMsyjmybrE=" show="false"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;audit_load_status&quot;"/>
+    <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;truncate audit_load_status&quot;"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime" show="false"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false" show="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="PROPAGATE_RECORD_SET" value="false"/>
+    <elementParameter field="COLUMN_LIST" name="RECORD_SET_COLUMN" value="" show="false"/>
+    <elementParameter field="CHECK" name="USE_PREPAREDSTATEMENT" value="false"/>
+    <elementParameter field="TABLE" name="SET_PREPAREDSTATEMENT_PARAMETERS" show="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="TEXT" name="COMMIT_EVERY" value="10000" show="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJDBCRow_1"/>
+    <metadata connector="REJECT" name="REJECT">
+      <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tJDBCInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="992" posY="768">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJDBCInput_3" show="false"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tJDBCConnection_1"/>
+    <elementParameter field="TEXT" name="URL" value="&quot;jdbc:&quot;" show="false"/>
+    <elementParameter field="TABLE" name="DRIVER_JAR" show="false"/>
+    <elementParameter field="TEXT" name="DRIVER_CLASS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="USER" value="&quot;&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="0RMsyjmybrE=" show="false"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="((String)globalMap.get(&quot;tableInfoList.TableName&quot;))"/>
+    <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
+    <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select * from &quot;+((String)globalMap.get(&quot;tableInfoList.TableName&quot;))"/>
+    <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime" show="false"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false" show="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="CHECK" name="USE_CURSOR" value="true"/>
+    <elementParameter field="TEXT" name="CURSOR_SIZE" value="15000"/>
+    <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="false"/>
+    <elementParameter field="TABLE" name="TRIM_COLUMN">
+      <elementValue elementRef="SCHEMA_COLUMN" value="data"/>
+      <elementValue elementRef="TRIM" value="false"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="ENABLE_MAPPING" value="false"/>
+    <elementParameter field="CLOSED_LIST" name="MAPPING" value="mysql_id" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="Extract Data"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJDBCInput_3">
+      <column comment="" key="false" length="-1" name="data" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="" type="id_Dynamic" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="1152" posY="768">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tMap_3" show="false"/>
+    <elementParameter field="EXTERNAL" name="MAP" value=""/>
+    <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
+    <elementParameter field="DIRECTORY" name="TEMPORARY_DATA_DIRECTORY" value=""/>
+    <elementParameter field="IMAGE" name="PREVIEW" value="_TpKucMlNEeeJeob3yjK3aw-tMap_3-PREVIEW.bmp"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true" show="false"/>
+    <elementParameter field="CHECK" name="LKUP_PARALLELIZE" value="false" show="false"/>
+    <elementParameter field="CHECK" name="ENABLE_AUTO_CONVERT_TYPE" value="false" show="false"/>
+    <elementParameter field="TEXT" name="ROWS_BUFFER_SIZE" value="2000000"/>
+    <elementParameter field="CHECK" name="CHANGE_HASH_AND_EQUALS_FOR_BIGDECIMAL" value="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="loadHDFS" name="loadHDFS">
+      <column comment="" key="false" length="-1" name="data" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+    <nodeData xsi:type="TalendMapper:MapperData">
+      <uiProperties/>
+      <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
+      <outputTables sizeState="INTERMEDIATE" name="loadHDFS">
+        <mapperTableEntries name="data" expression="(row1.data.toString()).replaceAll(&quot; - &quot;,context.HDFS_FIELDS_SEPARATOR)" type="id_String" nullable="true"/>
+      </outputTables>
+      <inputTables sizeState="INTERMEDIATE" name="row1" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+        <mapperTableEntries name="data" type="id_Dynamic" nullable="true"/>
+      </inputTables>
+    </nodeData>
+  </node>
+  <node componentName="tHDFSOutput" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1312" posY="768">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tHDFSOutput_1" show="false"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
+    <elementParameter field="TEXT" name="DESTINATION" value="" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tHDFSConnection_1"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="EMR_5_0_0" show="false"/>
+    <elementParameter field="HADOOP_DISTRIBUTION" name="HDFS" value="" show="false"/>
+    <elementParameter field="HADOOP_JARS_DIALOG" name="HADOOP_CUSTOM_JARS" value="" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="AUTHENTICATION_MODE" value="USERNAME" show="false"/>
+    <elementParameter field="TEXT" name="FS_DEFAULT_NAME" value="&quot;maprfs:///&quot;" show="false"/>
+    <elementParameter field="CHECK" name="USE_DATANODE_HOSTNAME" value="true" show="false"/>
+    <elementParameter field="CHECK" name="USE_KRB" value="false" show="false"/>
+    <elementParameter field="TEXT" name="NAMENODE_PRINCIPAL" value="&quot;nn/_HOST@EXAMPLE.COM&quot;" show="false"/>
+    <elementParameter field="CHECK" name="USE_KEYTAB" value="false" show="false"/>
+    <elementParameter field="TEXT" name="PRINCIPAL" value="&quot;hdfs&quot;" show="false"/>
+    <elementParameter field="FILE" name="KEYTAB_PATH" value="&quot;/tmp/hdfs.headless.keytab&quot;" show="false"/>
+    <elementParameter field="CHECK" name="USE_MAPRTICKET" value="false" show="false"/>
+    <elementParameter field="TEXT" name="USERNAME" value="&quot;anonymous&quot;" show="false"/>
+    <elementParameter field="TEXT" name="GROUP" value="&quot;supergroup&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="MAPRTICKET_PASSWORD" value="0RMsyjmybrE=" show="false"/>
+    <elementParameter field="TEXT" name="MAPRTICKET_CLUSTER" value="&quot;demo.mapr.com&quot;" show="false"/>
+    <elementParameter field="TEXT" name="MAPRTICKET_DURATION" value="86400L" show="false"/>
+    <elementParameter field="BOTH_HADOOP" name="FILENAME" value="context.TARGET_HDFS_DIRECTORY_FOR_DATA+((String)globalMap.get(&quot;tableInfoList.TableName&quot;))"/>
+    <elementParameter field="CLOSED_LIST" name="TYPEFILE" value="TEXT"/>
+    <elementParameter field="CLOSED_LIST" name="FILE_ACTION" value="OVERWRITE"/>
+    <elementParameter field="TEXT" name="ROWSEPARATOR" value="&quot;\n&quot;"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="context.HDFS_FIELDS_SEPARATOR"/>
+    <elementParameter field="CHECK" name="CUSTOM_ENCODING" value="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15" show="false"/>
+    <elementParameter field="COLUMN_LIST" name="KEYCOLUMN" value="data" show="false"/>
+    <elementParameter field="COLUMN_LIST" name="VALUECOLUMN" value="data" show="false"/>
+    <elementParameter field="LABEL" name="NOTE" value="NOTE : Only boolean, byte, byte[], double, float, integer,&#xA;&#x9;&#x9;&#x9;&#x9;long, short, string are currently supported for key class and value&#xA;&#x9;&#x9;&#x9;&#x9;columns fields&#xA;&#x9;&#x9;&#x9;" show="false"/>
+    <elementParameter field="CHECK" name="COMPRESS" value="false"/>
+    <elementParameter field="CLOSED_LIST" name="COMPRESSION" value="GZIP" show="false"/>
+    <elementParameter field="LABEL" name="COMPRESS_NOTE" value="NOTE : Only support Linux client and hadoop native code is&#xA;&#x9;&#x9;&#x9;&#x9;necessary, also need to add the native code path to&#xA;&#x9;&#x9;&#x9;&#x9;$java.library.path&#xA;&#x9;&#x9;&#x9;" show="false"/>
+    <elementParameter field="CHECK" name="INCLUDEHEADER" value="false"/>
+    <elementParameter field="TABLE" name="HADOOP_ADVANCED_PROPERTIES" show="false"/>
+    <elementParameter field="CHECK" name="SET_MAPR_HOME_DIR" value="false" show="false"/>
+    <elementParameter field="TEXT" name="MAPR_HOME_DIR" value="&quot;/opt/mapr&quot;" show="false"/>
+    <elementParameter field="CHECK" name="SET_HADOOP_LOGIN" value="false" show="false"/>
+    <elementParameter field="TEXT" name="HADOOP_LOGIN" value="&quot;kerberos&quot;" show="false"/>
+    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" value="100" show="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" label="loadHDFS" name="tHDFSOutput_1">
+      <column comment="" key="false" length="-1" name="data" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJDBCConnection_1" offsetLabelX="0" offsetLabelY="0" source="tJDBCConnection_1" target="tJDBCTableList_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk1" show="false"/>
+  </connection>
+  <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tJDBCTableList_1" offsetLabelX="0" offsetLabelY="0" source="tJDBCTableList_1" target="tJDBCColumnList_1">
+    <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
+    <elementParameter field="TEXT" name="NUMBER_PARALLEL" value="5" show="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="iterate1" show="false"/>
+  </connection>
+  <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tJDBCColumnList_1" offsetLabelX="0" offsetLabelY="0" source="tJDBCColumnList_1" target="tIterateToFlow_1">
+    <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
+    <elementParameter field="TEXT" name="NUMBER_PARALLEL" value="2" show="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="iterate2" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="tableInfo" lineStyle="0" metaname="tIterateToFlow_1" offsetLabelX="0" offsetLabelY="0" source="tIterateToFlow_1" target="tAggregateRow_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tableInfo" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="tableInfoList" lineStyle="0" metaname="tAggregateRow_1" offsetLabelX="0" offsetLabelY="0" source="tAggregateRow_1" target="tFlowToIterate_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tableInfoList" show="false"/>
+  </connection>
+  <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tFlowToIterate_1" offsetLabelX="0" offsetLabelY="0" source="tFlowToIterate_1" target="tJava_2">
+    <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
+    <elementParameter field="TEXT" name="NUMBER_PARALLEL" value="2" show="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="iterate3" show="false"/>
+  </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJava_2" offsetLabelX="0" offsetLabelY="0" source="tJava_2" target="tJDBCInput_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnComponentOk2" show="false"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tHDFSList_1" offsetLabelX="0" offsetLabelY="0" source="tHDFSList_1" target="tJDBCInput_2">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk4" show="false"/>
+  </connection>
+  <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tHDFSList_1" offsetLabelX="0" offsetLabelY="0" source="tHDFSList_1" target="tHDFSRowCount_1">
+    <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
+    <elementParameter field="TEXT" name="NUMBER_PARALLEL" value="2" show="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="iterate5" show="false"/>
+  </connection>
+  <connection connectorName="ITERATE" label="Iterate" lineStyle="7" metaname="tHDFSRowCount_1" offsetLabelX="0" offsetLabelY="0" source="tHDFSRowCount_1" target="tIterateToFlow_2">
+    <elementParameter field="CHECK" name="ENABLE_PARALLEL" value="false"/>
+    <elementParameter field="TEXT" name="NUMBER_PARALLEL" value="2" show="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="iterate4" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="row5" lineStyle="0" metaname="tIterateToFlow_2" offsetLabelX="0" offsetLabelY="0" source="tIterateToFlow_2" target="tAggregateRow_2">
+    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="FileName"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="RowCount"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="FilePath"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="Filename"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="row5" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="row7" lineStyle="0" metaname="tAggregateRow_2" offsetLabelX="0" offsetLabelY="0" source="tAggregateRow_2" target="tMap_2">
+    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="FileName"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="RowCount"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="row7" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="updateLoadStatus" lineStyle="0" metaname="updateLoadStatus" offsetLabelX="0" offsetLabelY="0" source="tMap_2" target="tJDBCOutput_4">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="updateLoadStatus" show="false"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tHDFSConnection_1" offsetLabelX="0" offsetLabelY="0" source="tHDFSConnection_1" target="tJDBCConnection_2">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk6" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="row6" lineStyle="0" metaname="tJDBCInput_2" offsetLabelX="0" offsetLabelY="0" source="tJDBCInput_2" target="tMap_5">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="row6" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="load_result" lineStyle="0" metaname="load_result" offsetLabelX="0" offsetLabelY="0" source="tMap_5" target="tJDBCOutput_5">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="load_result" show="false"/>
+  </connection>
+  <connection connectorName="RUN_IF" label="If_Spark" lineStyle="6" metaname="tJava_1" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tJava_1" target="tRunJob_1">
+    <elementParameter field="MEMO_JAVA" name="CONDITION" value="context.Ingestion_Style.equals(&quot;SPARK&quot;)"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="If_Spark" show="false"/>
+  </connection>
+  <connection connectorName="RUN_IF" label="If_Sqoop" lineStyle="6" metaname="tJava_1" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tJava_1" target="tSqoopImport_1">
+    <elementParameter field="MEMO_JAVA" name="CONDITION" value="context.Ingestion_Style.equals(&quot;SQOOP&quot;)"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="If_Sqoop" show="false"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJava_1" offsetLabelX="0" offsetLabelY="0" source="tJava_1" target="tHDFSList_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk3" show="false"/>
+  </connection>
+  <connection connectorName="RUN_IF" label="If_StandardDI_or_NoPK" lineStyle="6" metaname="tJava_1" offsetLabelX="0" offsetLabelY="0" outputId="3" source="tJava_1" target="tJDBCInput_3">
+    <elementParameter field="MEMO_JAVA" name="CONDITION" value="context.Ingestion_Style.equals(&quot;STANDARD_DI&quot;)"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="If_StandardDI_or_NoPK" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="row4" lineStyle="0" metaname="tJDBCInput_1" offsetLabelX="0" offsetLabelY="0" source="tJDBCInput_1" target="tMap_1">
+    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="Source_Balance_Number"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="upperBound"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="lowerBound"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="row4" show="false"/>
+  </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJDBCInput_1" offsetLabelX="0" offsetLabelY="0" source="tJDBCInput_1" target="tJava_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnComponentOk1" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="start_movement" lineStyle="0" metaname="start_movement" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tMap_1" target="tJDBCOutput_1">
+    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="load_end_datetime"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="load_id"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="source_extract_date"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="source_name"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="source_balance_number"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="target_balance_number"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="start_movement" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="setUpper" lineStyle="0" metaname="setUpper" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tMap_1" target="tContextLoad_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="setUpper" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="setLower" lineStyle="0" metaname="setLower" offsetLabelX="0" offsetLabelY="0" outputId="3" source="tMap_1" target="tContextLoad_2">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="setLower" show="false"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJDBCConnection_2" offsetLabelX="0" offsetLabelY="0" source="tJDBCConnection_2" target="tJDBCRow_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk2" show="false"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tJDBCRow_1" offsetLabelX="0" offsetLabelY="0" source="tJDBCRow_1" target="tJDBCConnection_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk5" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tJDBCInput_3" offsetLabelX="0" offsetLabelY="0" source="tJDBCInput_3" target="tMap_3">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="row1" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="loadHDFS" lineStyle="0" metaname="loadHDFS" offsetLabelX="0" offsetLabelY="0" source="tMap_3" target="tHDFSOutput_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="loadHDFS" show="false"/>
+  </connection>
+  <note opaque="true" posX="96" posY="-256" sizeHeight="129" sizeWidth="353" text="Connections to HDFS, &#xD;&#xA;audit and migration DB's. &#xD;&#xA;tJDBCRow Truncates the audit table &#xD;&#xA;using SQL."/>
+  <note opaque="true" posX="480" posY="-288" sizeHeight="225" sizeWidth="1057" text="Get a list of tables from the DB to migrate.&#xD;&#xA;Get Column details for each table as you iterate over the table names into a list of column details.&#xD;&#xA;Push and aggregate column details into one variable named 'Column_List' for ea table.&#xD;&#xA;tFlowToIterate reads the column list lines into global variables (key-value pairs) by iterating over the list.&#xD;&#xA;&quot;Find if PK exists&quot; Sets the ingestion method based on if table(s) have primary keys or not using java code. IF &#xD;&#xA;there is no PK, the context List variable &quot;context.Ingestion_Style&quot; is set to &quot;STANDARD_DI&quot; &#xD;&#xA;(SPARK, SQOOP,STANDARD_DI)"/>
+  <note opaque="true" posX="1248" posY="224" sizeHeight="161" sizeWidth="417" text="select count, min, max of PK for ea tab.&#xD;&#xA;Map min &amp; max to ContextLoad, and&#xD;&#xA;insert recordCount to the audit_load_status&#xD;&#xA;table. REMEMBER, this happens for ea table&#xD;&#xA;in the list."/>
+  <note opaque="true" posX="224" posY="512" sizeHeight="97" sizeWidth="257" text="Echo Ingestion style,&#xD;&#xA;Tablename, col list&#xD;&#xA;with java println"/>
+  <note opaque="true" posX="1248" posY="480" sizeHeight="193" sizeWidth="385" text="Ingest 1 of 3 ways based on the &#xD;&#xA;variable &quot;Ingestion_Style&quot; for ea table.&#xD;&#xA;See sub-job &quot;RDBMS_to_HDFS_Step2 &#xD;&#xA;for &quot;DB INGESTION TO HADOOP&quot;.&#xD;&#xA;Otherwise, using Sqoop import or &#xD;&#xA;STANDARD_DI import methods.&#xD;&#xA;"/>
+  <note opaque="true" posX="1152" posY="832" sizeHeight="161" sizeWidth="513" text="If import worked, check that all looks well in HDFS.&#xD;&#xA;1: get list of files from HDFS to iterate over&#xD;&#xA;2: get row counts from each file and aggregate them&#xD;&#xA;3: set up output for audit_load_status table with results"/>
+  <note opaque="true" posX="1184" posY="1024" sizeHeight="97" sizeWidth="513" text="This works in conjunction with the sequence above..&#xD;&#xA;Iterating over Table List, Select record for update and &#xD;&#xA;update records with status's built in &quot;LOGGING in AUDIT...&quot;"/>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJDBCConnection_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" value="true"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJDBCTableList_1" show="false"/>
+    <elementParameter field="TEXT" name="SUBJOB_TITLE" value="Preparing the Variables and Metadata to set for a Generic and Dynamic Job Execution"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="128;128;192"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" value="true"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tHDFSList_1" show="false"/>
+    <elementParameter field="TEXT" name="SUBJOB_TITLE" value="LOGGING in AUDIT LOAD STATUS : Log the COUNT of ROWS for the TARGET FILE + Start date ..."/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="255;128;0"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tHDFSConnection_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" value="true"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tRunJob_1" show="false"/>
+    <elementParameter field="TEXT" name="SUBJOB_TITLE" value="MIGRATE DATA and DQ"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="0;255;0"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJDBCInput_2" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tSqoopImport_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJava_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="CHECK" name="SHOW_SUBJOB_TITLE" value="true"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJDBCInput_1" show="false"/>
+    <elementParameter field="TEXT" name="SUBJOB_TITLE" value="LOGGING in AUDIT LOAD STATUS : Log the COUNT of ROWS for the SOURCE TABLE + Start date ..."/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="255;128;0"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJDBCConnection_2" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJDBCRow_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJDBCInput_3" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+</talendfile:ProcessType>
