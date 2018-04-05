@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<talendfile:ContextType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" xmi:id="_GbJYkDjYEeiuEblvS5oPJw" confirmationNeeded="false" name="Default">
+  <contextParameter xmi:id="_GbJYkTjYEeiuEblvS5oPJw" comment="" name="HADOOP_HOST" prompt="HADOOP_HOST?" promptNeeded="true" type="id_String" value="ane-cdhsrv01"/>
+  <contextParameter xmi:id="_GbJYkjjYEeiuEblvS5oPJw" comment="" name="HADOOP_USER" prompt="HADOOP_USER?" promptNeeded="true" type="id_String" value="hue"/>
+  <contextParameter xmi:id="_GbJYkzjYEeiuEblvS5oPJw" comment="" name="TARGET_HDFS_DIRECTORY_FOR_DATA" prompt="TARGET_HDFS_DIRECTORY_FOR_DATA?" promptNeeded="true" type="id_String" value="/user/hue/data_ingestion/data/"/>
+  <contextParameter xmi:id="_GbJYlDjYEeiuEblvS5oPJw" comment="" name="DB_TO_MIGRATE_HOST" prompt="DB_TO_MIGRATE_HOST?" promptNeeded="true" type="id_String" value="ANE-BISQLSRV"/>
+  <contextParameter xmi:id="_GbJYlTjYEeiuEblvS5oPJw" comment="" name="DB_TO_MIGRATE_PORT" prompt="DB_TO_MIGRATE_PORT?" promptNeeded="true" type="id_String" value="1433"/>
+  <contextParameter xmi:id="_GbJYljjYEeiuEblvS5oPJw" comment="" name="DB_TO_MIGRATE_USER" prompt="DB_TO_MIGRATE_USER?" promptNeeded="true" type="id_String" value="talend"/>
+  <contextParameter xmi:id="_GbJYlzjYEeiuEblvS5oPJw" comment="" name="DB_TO_MIGRATE_PWD" prompt="DB_TO_MIGRATE_PWD?" promptNeeded="true" type="id_Password" value="wGqb/05Fv9yCTKrbLgJwpFpFkU9N+HPP"/>
+  <contextParameter xmi:id="_GbJYmDjYEeiuEblvS5oPJw" comment="" name="DB_TO_MIGRATE_NAME" prompt="DB_TO_MIGRATE_NAME?" promptNeeded="true" type="id_String" value="Healthcare_Demo_Data"/>
+  <contextParameter xmi:id="_GbJYmTjYEeiuEblvS5oPJw" comment="" name="HDFS_FIELDS_SEPARATOR" prompt="HDFS_FIELDS_SEPARATOR?" promptNeeded="true" type="id_String" value="|"/>
+  <contextParameter xmi:id="_GbJYmjjYEeiuEblvS5oPJw" comment="" name="DB_TO_MIGRATE_SCHEMA" prompt="DB_TO_MIGRATE_SCHEMA?" promptNeeded="true" type="id_String" value="dbo"/>
+  <contextParameter xmi:id="_GbJYmzjYEeiuEblvS5oPJw" comment="" name="WORK_FILE_LOCATION" prompt="WORK_FILE_LOCATION?" promptNeeded="true" type="id_String" value="C:/Users/akoutalakis.ABILISNE/Desktop/Healthcare_Demo"/>
+  <contextParameter xmi:id="_GbJYnDjYEeiuEblvS5oPJw" comment="" name="HDFS_ROW_SEPARATOR" prompt="HDFS_ROW_SEPARATOR?" promptNeeded="true" type="id_String" value="\\n"/>
+  <contextParameter xmi:id="_GbJYnTjYEeiuEblvS5oPJw" comment="" name="HADOOP_NAMENODE_URI" prompt="HADOOP_NAMENODE_URI?" promptNeeded="true" type="id_String" value="hdfs://ane-cdhsrv02:8020"/>
+  <contextParameter xmi:id="_GbJYnjjYEeiuEblvS5oPJw" comment="" name="HDFS_USERNAME" prompt="HDFS_USERNAME?" promptNeeded="true" type="id_String" value="admin"/>
+  <contextParameter xmi:id="_GbJYnzjYEeiuEblvS5oPJw" comment="" name="HDFS_DIRECTORY_ROOT" prompt="HDFS_DIRECTORY_ROOT?" promptNeeded="false" type="id_String" value="/medical_data/"/>
+</talendfile:ContextType>
